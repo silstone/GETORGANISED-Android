@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "395288907967",
+    "project_id": "getorganized-fb97f",
+    "storage_bucket": "getorganized-fb97f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:395288907967:android:dd0db4f2cd9078b3afb60a",
+        "android_client_info": {
+          "package_name": "com.getorganized"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "395288907967-ejiiibvp1c6193vup2a7jnggp9mnfcdv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBf9GrbGvJluur6oTU-kdkZY02fNnCAdMk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "395288907967-ejiiibvp1c6193vup2a7jnggp9mnfcdv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

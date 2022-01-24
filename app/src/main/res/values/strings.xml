@@ -1,0 +1,123 @@
+<resources>
+    <string name="app_name">Get Organized</string>
+
+
+    <string name="life_task">Life Management Done Differently</string>
+    <string name="a_task">A task does not get done till it gets scheduled!</string>
+    <string name="get_started">Get Started</string>
+    <string name="continue_google">Continue with Google</string>
+
+    <string name="continue_email">Continue with Email</string>
+    <string name="welcome">Hi, Welcome to a life changing application.</string>
+    <string name="lets_help">Let us help to set this application up.</string>
+    <string name="start">Start</string>
+
+    <string name="create_lists">Create Lists</string>
+    <string name="what_are_major">What are the major areas of your life that you need to manage?</string>
+    <string name="work">Work</string>
+    <string name="plus">+</string>
+    <string name="personal">Personal</string>
+    <string name="next">Next</string>
+    <string name="list_title">List Title</string>
+    <string name="lists">Lists</string>
+    <string name="back">Back</string>
+    <string name="log_in">Log In</string>
+    <string name="register">Register</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="forgot_password"><u>Forgot Password?</u></string>
+    <string name="Login">Login</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="by_click">By clicking on continue you agree to our </string>
+    <string name="terms">Terms &amp; Privacy Policy</string>
+    <string name="terms_and">Terms and Privacy Policy</string>
+    <string name="we_send_pass_reset">We will send you a password reset link to your registered email.</string>
+    <string name="send_link">Send Reset Link</string>
+    <string name="dump_braiin">This is where you dump your brain.</string>
+    <string name="idea_or_work">Any idea or work item that comes your mind can be added here.   \n  \n Once added you can schedule and add to list later if needed.</string>
+    <string name="new_task">+ New Task</string>
+    <string name="please_add_task">Please add tasks to your life to get started</string>
+    <string name="swipe_right">Swipe Right</string>
+    <string name="swipe_left">Swipe Left</string>
+    <string name="schedule">Schedule</string>
+    <string name="setting">Settings</string>
+    <string name="completed_tasks">Completed Tasks</string>
+
+    <string name="signed_as">Signed In As</string>
+    <string name="general">General</string>
+    <string name="reminders">Reminders</string>
+    <string name="notifications">Notifications</string>
+    <string name="subscription">Subscription</string>
+    <string name="siri_shortcuts">Siri Shortcuts</string>
+    <string name="about_app">About the app</string>
+    <string name="help_support">Help and Support</string>
+    <string name="sign_out">Sign Out</string>
+
+
+    <string name="save">Save</string>
+    <string name="cancle">Cancle</string>
+    <string name="add_task">Add task</string>
+    <string name="task">Task</string>
+    <string name="buy_gift">Buy gifts for thanksgiving</string>
+    <string name="add_to_list">Add to list</string>
+
+    <string name="start_time">Start Time</string>
+    <string name="end_time">End Time</string>
+    <string name="add_schedule">Add Schedule</string>
+
+    <string name="delete">Delete</string>
+    <string name="mark_done">Mark as done</string>
+
+    
+    <string name="strike"> <strike>Call the team to discuss the progress of the project</strike> </string>
+
+
+    <string name="material_calendar_monday">Mon</string>
+    <string name="material_calendar_tuesday">Tue</string>
+    <string name="material_calendar_wednesday">Wed</string>
+    <string name="material_calendar_thursday">Thr</string>
+    <string name="material_calendar_friday">Fri</string>
+    <string name="material_calendar_saturday">Sat</string>
+    <string name="material_calendar_sunday">Sun</string>
+
+    <array name="material_calendar_months_array">
+        <item>Jan</item>
+        <item>Feb</item>
+        <item>Mar</item>
+        <item>Apr</item>
+        <item>May</item>
+        <item>Jun</item>
+        <item>Jul</item>
+        <item>Aug</item>
+        <item>Sept</item>
+        <item>Oct</item>
+        <item>Nov</item>
+        <item>Dec</item>
+    </array>
+
+
+    <string name="internet">Please check your internet Connection</string>
+    <string name="plz_enter_email">Please enter email</string>
+    <string name="plz_both_pass">Both password"'"s should be same</string>
+    <string name="plz_enter_confirm_pass">Please enter Confirm password</string>
+    <string name="plz_enter_pass">Please enter password</string>
+    <string name="plz_enter_valid_email">Please add valid email address</string>
+    <string name="please_wait">Please wait...</string>
+    <string name="registered_successfully">Registered Successfully. Please verify your email and try login.</string>
+    <string name="email_not_verified">Email is not verified by you.</string>
+   <!--
+    <string name="enter_email">Please</string>
+    <string name="enter_email">Please</string>
+    <string name="enter_email">Please</string>
+    <string name="enter_email">Please</string>
+    <string name="enter_email">Please</string>
+    <string name="enter_email">Please</string>
+    <string name="enter_email">Please</string>
+    <string name="enter_email">Please</string>
+    <string name="enter_email">Please</string>
+    <string name="enter_email">Please</string>-->
+
+
+
+</resources>

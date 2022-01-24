@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+
+    <com.guanaj.easyswipemenulibrary.EasySwipeMenuLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="40dp"
+        app:contentView="@+id/cardview2"
+        app:leftMenuView="@+id/delete"
+        app:rightMenuView="@+id/done"
+        android:background="@android:color/transparent">
+
+        <LinearLayout
+            android:id="@+id/delete"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:orientation="horizontal"
+            >
+
+            <View
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                />
+
+        <LinearLayout
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@drawable/delete_background"
+            >
+             <ImageView
+                android:id="@+id/delete_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                 android:src="@drawable/delete_icon"
+                 android:layout_gravity="center"
+              />
+        </LinearLayout>
+
+            <View
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                />
+        </LinearLayout>
+
+
+            <androidx.cardview.widget.CardView
+
+                android:id="@+id/cardview2"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible"
+                card_view:cardBackgroundColor="#A362EA"
+                card_view:cardCornerRadius="9dp"
+                card_view:cardElevation="0dp"
+                card_view:contentPadding="0dp"
+                >
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:drawablePadding="5dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="start"
+                        android:layout_alignParentEnd="true"
+                        android:text="Call the team to discuss the progress of the project"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:drawablePadding="5dp"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:gravity="start"
+                        android:layout_alignParentEnd="true"
+                        android:text="12:30-12:45"
+                        android:textColor="@color/white"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+
+        <LinearLayout
+            android:id="@+id/done"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <View
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                />
+            <LinearLayout
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="@drawable/done_button_background"
+                >
+
+            <ImageView
+                android:id="@+id/done_icon"
+                android:layout_width="24dp"
+                android:layout_gravity="center"
+                android:src="@drawable/check"
+                android:layout_height="24dp"
+                />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                />
+
+        </LinearLayout>
+
+    </com.guanaj.easyswipemenulibrary.EasySwipeMenuLayout>
+
+
+
+
+
+
+
+
+
+
+
+</LinearLayout>

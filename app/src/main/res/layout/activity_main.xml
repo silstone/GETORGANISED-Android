@@ -1,0 +1,728 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true">
+
+
+    <RelativeLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="40dp"
+            android:drawablePadding="5dp"
+            android:fontFamily="@font/poppins_bold"
+            android:gravity="start"
+            android:text="@string/lists"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+
+        <ImageView
+            android:id="@+id/completed_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="start"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
+            android:padding="5dp"
+            android:src="@drawable/complete_list_icon"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/top"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:id="@+id/first_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <ImageView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="70dp"
+                    android:padding="5dp"
+                    android:src="@drawable/new_task"
+                    android:visibility="visible" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="54dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="52dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="center"
+                    android:text="@string/dump_braiin"
+                    android:textColor="@color/button_color"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="30dp"
+                    android:fontFamily="@font/poppins_reguler"
+                    android:gravity="center"
+                    android:text="@string/idea_or_work"
+                    android:textColor="@color/txt_gray"
+                    android:textSize="14sp" />
+
+
+                <TextView
+                    android:id="@+id/new_task"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="22dp"
+                    android:background="@drawable/new_task_background"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center"
+                    android:text="@string/new_task"
+                    android:textColor="@color/blue"
+                    android:textSize="12sp" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/second_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/get_started"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="22dp"
+                    android:background="@drawable/dark_gray_background"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="start"
+                    android:padding="15dp"
+                    android:text="Lorem ipsum dolor sit amet sed consectetur adipiscing elit."
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="22dp"
+                    android:background="@drawable/dark_gray_background"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="start"
+                    android:padding="15dp"
+                    android:text="Lorem ipsum dolor sit amet"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="22dp"
+                    android:background="@drawable/dark_gray_background"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="start"
+                    android:padding="15dp"
+                    android:text="Lorem ipsum dolor sit amet"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="22dp"
+                    android:background="@drawable/dark_gray_background"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="start"
+                    android:padding="15dp"
+                    android:text="Lorem ipsum dolor sit amet"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="22dp"
+                    android:background="@drawable/dark_gray_background"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="start"
+                    android:padding="15dp"
+                    android:text="Lorem ipsum dolor sit amet sed consectetur adipiscing elit."
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+
+                <TextView
+                    android:id="@+id/plus_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="60dp"
+                    android:layout_marginEnd="22dp"
+                    android:background="@drawable/create_btn_background"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center"
+                    android:text="@string/plus"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/third_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="22dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="start"
+                    android:text="Unscheduled"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="22dp"
+                    android:background="@drawable/blue_background"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="start"
+                    android:padding="15dp"
+                    android:text="Call the team to discuss the progress of the project"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="22dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="start"
+                    android:text="Today, 04 Nov 2020"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="22dp"
+                    android:background="@drawable/blue_background"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="start"
+                    android:padding="15dp"
+                    android:text="Call the team to discuss the progress of the project  \n 12:30-12:45"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="22dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="start"
+                    android:text="Tomorrow, 05 Nov 2020"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="22dp"
+                    android:background="@drawable/blue_background"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="start"
+                    android:padding="15dp"
+                    android:text="Call the team to discuss the progress of the project  \n 12:30-12:45"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="22dp"
+                    android:background="@drawable/blue_background"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="start"
+                    android:padding="15dp"
+                    android:text="Call the team to discuss the progress of the project  \n 12:30-12:45"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="22dp"
+                    android:background="@drawable/create_btn_background"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center"
+                    android:text="@string/plus"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_recycler_view"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top"
+        android:layout_marginTop="20dp" />
+
+
+    <RelativeLayout
+        android:id="@+id/swipe_layout"
+        android:layout_width="30dp"
+        android:layout_height="170dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white">
+
+
+        <RelativeLayout
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/swipe_left_icon" />
+
+        <!--android:background="@drawable/swipe_left_right_backgr"-->
+
+
+        <!--<ImageView
+            android:id="@+id/swipe_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="5dp"
+            android:contentDescription="TODO"
+            android:src="@drawable/arrow_left" />-->
+
+        <TextView
+            android:id="@+id/swipe_txt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:fontFamily="@font/poppins_reguler"
+            android:gravity="start"
+            android:rotation="90"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="11sp" />
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/delete_done_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/transparent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:alpha="0.2"
+            android:background="@color/black"
+            android:orientation="horizontal" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/create_list_background"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/task_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="40dp"
+                android:drawablePadding="5dp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:gravity="start"
+                android:text="Lorem ipsum dolor sit amet sed consectetur adipiscing elit."
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/cross_btn2"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="start"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/cross_icon"
+                android:visibility="visible" />
+
+            <View
+                android:id="@+id/viw2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/task_detail"
+                android:layout_marginTop="15dp"
+                android:background="@color/light_gray" />
+
+
+            <LinearLayout
+                android:id="@+id/layout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/viw2"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="28dp"
+                android:gravity="start"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/add_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/add_list_background"
+                        android:padding="7dp"
+                        android:src="@drawable/add_list_icon" />
+
+
+                    <TextView
+                        android:id="@+id/add_list_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="start"
+                        android:text="@string/add_to_list"
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/schedule"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/schedule_txt_background"
+                        android:padding="7dp"
+                        android:src="@drawable/calendar" />
+
+
+                    <TextView
+                        android:id="@+id/schedule_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="start"
+                        android:text="@string/schedule"
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout2"
+                android:layout_marginTop="28dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/delete_task"
+                    android:layout_width="154dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="30dp"
+                    android:background="@drawable/mark_delete_background"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:padding="5dp"
+                        android:src="@drawable/delete_icon_red" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="start"
+                        android:text="@string/delete"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/mark_done"
+                    android:layout_width="154dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="20dp"
+                    android:background="@drawable/mark_done_background"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:padding="5dp"
+                        android:src="@drawable/check_blue" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="5dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="start"
+                        android:text="@string/mark_done"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/task_list_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/transparent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:alpha="0.2"
+            android:background="@color/black"
+            android:orientation="horizontal" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/create_list_background"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/task"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="40dp"
+                android:drawablePadding="5dp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:gravity="start"
+                android:text="@string/task"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/cross_btn"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="start"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/cross_icon"
+                android:visibility="visible" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/task_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/new_list_txt"
+                android:layout_below="@+id/task"
+                android:layout_marginTop="10dp" />
+
+
+            <TextView
+                android:id="@+id/new_list_txt"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="20dp"
+                android:layout_gravity="start"
+                android:layout_marginStart="25dp"
+                android:text="New List"
+                android:drawableStart="@drawable/plus_icon"
+                android:textColor="@color/blue"
+                android:textSize="14sp"
+                android:drawablePadding="5dp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:gravity="center_vertical" />
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
+

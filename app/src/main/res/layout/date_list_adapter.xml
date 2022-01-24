@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="10dp"
+    android:background="@drawable/date_bckground"
+    >
+
+
+    <RelativeLayout
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:orientation="vertical"
+        android:background="@drawable/date_bckground"
+        tools:ignore="MissingConstraints">
+
+
+
+        <TextView
+            android:id="@+id/date_no"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="5"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="12sp"
+            android:layout_centerHorizontal="true"
+            android:singleLine="true"
+            android:textColor="@color/white"/>
+
+
+
+
+        <TextView
+            android:id="@+id/Aug"
+            android:layout_width="wrap_content"
+            android:layout_height="14dp"
+            android:text="Aug"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="7sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="19dp"
+            android:textColor="@color/white"/>
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

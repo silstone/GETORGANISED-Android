@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#E5E9F2</color>
+    <color name="purple_500">#E5E9F2</color>
+    <color name="purple_700">#E5E9F2</color>
+    <color name="teal_200">#E5E9F2</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    
+    <color name="create_btn_color">#E5E9F2</color>
+    <color name="button_color">#001737</color>
+    <color name="background_color">#001737</color>
+    <color name="light_blue">#6E38FF</color>
+    <color name="blue">#3367D6</color>
+    <color name="sky_blue">#3367D6</color>
+    <color name="dark_blue">#0E3587</color>
+    <color name="dark_red">#800000</color>
+    <color name="red">#FE0000</color>
+    <color name="sign_out_color">#DF0A0A</color>
+    <color name="carrot">#FF4F51</color>
+    <color name="shade_1">#800000</color>
+    <color name="shade_2">#FE0000</color>
+    <color name="shade_3">#FF4F51</color>
+    <color name="shade_4">#FF0066</color>
+    <color name="shade_5">#EA8F32</color>
+    <color name="shade_6">#FE65CD</color>
+    <color name="shade_7">#FF99FF</color>
+    <color name="shade_8">#9934FE</color>
+    <color name="shade_9">#FFFF00</color>
+    <color name="shade_10">#6487E6</color>
+    <color name="shade_11">#00CC99</color>
+    <color name="shade_12">#A0BA32</color>
+    <color name="shade_13">#009900</color>
+    <color name="shade_14">#3332CC</color>
+    <color name="shade_15">#0AFBF6</color>
+    <color name="shade_16">#3975E2</color>
+    <color name="green">#12D85B</color>
+
+    <color name="light_purple">#A622A2</color>
+    <color name="txt_gray">#8392A5</color>
+    <color name="light_gray">#E6EBF4</color>
+
+    <color name="schedule_color">#E0F2F5</color>
+    <color name="add_list_color">#FAEEDE</color>
+
+    <color name="delete_item_color">#FFEDED</color>
+
+
+    <color name="selected_task">#F1F6FF</color>
+    
+    
+</resources>
