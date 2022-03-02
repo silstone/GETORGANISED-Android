@@ -51,7 +51,7 @@ class SelectionScreen : AppCompatActivity() {
         email.setOnClickListener {
             val intent = Intent(this, LoginRegister::class.java)
             startActivity(intent)
-
+finish()
         }
 
         window.setFlags(

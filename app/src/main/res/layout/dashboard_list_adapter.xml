@@ -13,37 +13,40 @@
         tools:ignore="MissingConstraints"
         >
 
-        <LinearLayout
-            android:id="@+id/bacup_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:alpha="0.2"
-            android:orientation="horizontal" />
-
-        <RelativeLayout
-            android:id="@+id/name_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-           >
-
-
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="90dp"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:fontFamily="@font/poppins_semi_bold"
-                android:textSize="12sp"
-                android:gravity="center"
-                android:layout_centerInParent="true"
-                android:singleLine="true"
-                android:rotation="-90"
-                android:textColor="@color/black"/>
 
 
 
-        </RelativeLayout>
+
+            <GridLayout
+                android:id="@+id/name_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                >
+
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_row="1"
+                    android:layout_rowSpan="3"
+                    android:rotation="-90.0"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:paddingBottom="38dp"
+                    android:text="---"
+                    android:singleLine="true"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:textSize="12sp"
+                    android:textColor="@color/black"/>
+
+
+
+
+
+
+            </GridLayout>
 
 
 

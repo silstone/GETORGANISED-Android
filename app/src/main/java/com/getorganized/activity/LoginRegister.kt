@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -19,7 +21,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.getorganized.R
 import com.getorganized.utils.Constant
 import com.getorganized.utils.SharedPref
-import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.OnCompleteListener
@@ -39,7 +40,7 @@ class LoginRegister : AppCompatActivity() {
     var b_email: Boolean = false
     var b_pass: Boolean = false
     var b_confm_pass: Boolean = false
-
+    private var doubleBackToExitPressedOnce = false
     lateinit var v1: View
     lateinit var v2: View
     lateinit var confirm_layout: LinearLayout
@@ -62,7 +63,7 @@ class LoginRegister : AppCompatActivity() {
     private var mAuth: FirebaseAuth? = null
 
     private lateinit var analytics: FirebaseAnalytics
-
+    val constant = Constant()
     var emailPattern = ""
 
     lateinit var login_register_button: TextView
@@ -340,10 +341,9 @@ class LoginRegister : AppCompatActivity() {
         val user = FirebaseAuth.getInstance().currentUser!!
         if (user.isEmailVerified) {
            // showToast("Email Verified")
-            save_user()
-            val intent = Intent(this, StartApp::class.java)
-            startActivity(intent)
-            finish()
+               val user_id = user.uid
+            save_user(user_id)
+
         } else {
             showToast(resources.getString(R.string.email_not_verified))
             sendVerificationEmail()
@@ -378,8 +378,8 @@ class LoginRegister : AppCompatActivity() {
                 } else {
                     // showToast(task.exception!!.message!!)
                     progressDialog.dismiss()
-                    change_to_login()
-                    sendVerificationEmail()
+                  //  change_to_login()
+                  //  sendVerificationEmail()
                 }
             })
     }
@@ -408,12 +408,7 @@ class LoginRegister : AppCompatActivity() {
         }
     }
 
-
-
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
 
 
     private fun sendVerificationEmail() {
@@ -462,28 +457,47 @@ class LoginRegister : AppCompatActivity() {
 
 
 
-    private fun save_user() {
+    private fun save_user(user_id: String) {
 
         // Create a new user with a email
         val user = hashMapOf(
-            "user_email" to s_email,
+           constant.USER_EMAIL to s_email,
 
         )
         val sharedPref = SharedPref()
-        sharedPref.setemail(this,s_email)
+        sharedPref.save_value(this,constant.USER_EMAIL,s_email)
 
 // Add a new document with a generated ID
-        db.collection("USERS").document(s_email)
+        db.collection(constant.USERS).document(user_id)
             .set(user)
             .addOnSuccessListener { documentReference ->
                 Log.d("addOnSuccessListener", "DocumentSnapshot added with ID:");
+
+                sharedPref.save_bool_value(this,constant.USER_LOGIN,true)
+
+                val intent = Intent(this, StartApp::class.java)
+                startActivity(intent)
+                finish()
             }
             .addOnFailureListener { e ->
                 Log.w("addOnFailureListener", "Error adding document", e)
+                showToast("Something went wrong pleaase try again")
             }
     }
 
 
+
+    override fun onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed()
+            return
+        }
+
+        this.doubleBackToExitPressedOnce = true
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show()
+
+        Handler(Looper.getMainLooper()).postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
+    }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

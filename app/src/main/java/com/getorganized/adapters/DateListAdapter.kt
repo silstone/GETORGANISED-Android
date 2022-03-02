@@ -10,10 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.getorganized.R
 
 
-class DateListAdapter(val items: HashMap<Int, String>, val context: Context) :
+class DateListAdapter(val items: MutableList<String> = ArrayList(), val context: Context) :
     RecyclerView.Adapter<dateViewHolder>() {
-
-   
 
     override fun getItemCount(): Int {
         return items.size
@@ -37,5 +35,6 @@ class DateListAdapter(val items: HashMap<Int, String>, val context: Context) :
 class dateViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     val date_no = view.findViewById(R.id.date_no) as TextView
+    val month_txt = view.findViewById(R.id.month_txt) as TextView
     
 }

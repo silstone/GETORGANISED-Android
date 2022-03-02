@@ -12,6 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical">
+
         <LinearLayout
             android:layout_above="@+id/next_button"
             android:layout_width="match_parent"
@@ -47,7 +53,7 @@
                 android:textSize="14sp" />
 
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/get_started"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -60,53 +66,21 @@
                 android:gravity="center"
                 android:text="@string/work"
                 android:textColor="@color/white"
-                android:textSize="12sp" />
+                android:textSize="12sp" />-->
 
 
 
-            <TextView
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/task_recycler"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginStart="42dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="42dp"
-                android:background="@drawable/btn_selected_background"
-                android:fontFamily="@font/poppins_medium"
-                android:gravity="center"
-                android:text="@string/personal"
-                android:textColor="@color/white"
-                android:textSize="12sp" />
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardview"
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:visibility="gone"
-                card_view:cardBackgroundColor="@color/sky_blue"
-                card_view:cardCornerRadius="9dp"
-                card_view:cardElevation="0dp"
-                card_view:contentPadding="0dp"
-                android:layout_marginStart="42dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="42dp"
-                >
-
-                <TextView
-                    android:id="@+id/card_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal"
-                    android:fontFamily="@font/poppins_medium"
-                    android:gravity="center"
-                    android:text="h"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-            </androidx.cardview.widget.CardView>
+                android:layout_height="wrap_content"
+                android:minHeight="200dp"
+                android:scrollbars="none"
+                android:background="@color/white"
+                android:layout_marginTop="62dp"
+                android:visibility="visible"/>
 
 
             <TextView
@@ -125,28 +99,32 @@
                 android:textSize="16sp" />
 
 
+            <TextView
+
+                android:id="@+id/next_button"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="42dp"
+                android:layout_marginBottom="70dp"
+                android:layout_marginEnd="42dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/btn_selected_background"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:text="@string/next"
+                android:visibility="gone"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
 
 
         </LinearLayout>
 
+        </ScrollView>
 
-        <TextView
 
-            android:id="@+id/next_button"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="42dp"
-            android:layout_marginBottom="70dp"
-            android:layout_marginEnd="42dp"
-            android:background="@drawable/btn_selected_background"
-            android:fontFamily="@font/poppins_medium"
-            android:gravity="center"
-            android:text="@string/next"
-            android:visibility="gone"
-            android:textColor="@color/white"
-            android:textSize="12sp" />
+
 
 
 
@@ -177,10 +155,10 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="240dp"
             android:background="@drawable/create_list_background"
             android:orientation="vertical"
-            android:layout_marginBottom="340dp"
+            android:layout_marginBottom="335dp"
             android:layout_alignParentBottom="true">
 
 
@@ -196,16 +174,37 @@
                 android:focusable="true"
                 android:singleLine="true"
                 android:textColor="@color/black"
+                android:background="@android:color/transparent"
                 android:textColorHint="@color/txt_gray" />
+
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:background="@color/light_gray"
+                android:layout_below="@+id/list_name"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:gravity="center_horizontal"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/view1"
+                android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:gravity="start"
+                android:gravity="center_horizontal"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
                 android:layout_marginTop="10dp"
-                android:layout_below="@+id/list_name"
                 android:orientation="horizontal">
 
 
@@ -244,7 +243,7 @@
                     android:layout_height="34dp"
                     android:layout_gravity="center_vertical"
                     android:padding="8dp"
-                    android:visibility="gone"
+                    android:visibility="visible"
                    android:src="@drawable/shade_4_unselected"
                    />
 
@@ -272,7 +271,7 @@
                     android:layout_height="34dp"
                     android:layout_gravity="center_vertical"
                     android:padding="8dp"
-                    android:visibility="gone"
+                    android:visibility="visible"
                    android:src="@drawable/shade_7_unselected"
                    />
 
@@ -285,79 +284,97 @@
                    android:src="@drawable/shade_8_unselected"
                     />
 
-                <ImageView
-                    android:id="@+id/shade_9"
-                    android:layout_width="34dp"
-                    android:layout_height="34dp"
-                    android:layout_gravity="center_vertical"
-                    android:padding="8dp"
-                    android:visibility="gone"
-                   android:src="@drawable/shade_9_unselected" />
 
-                <ImageView
-                    android:id="@+id/shade_10"
-                    android:layout_width="34dp"
-                    android:layout_height="34dp"
-                    android:layout_gravity="center_vertical"
-                    android:padding="8dp"
-                   android:src="@drawable/shade_10_unselected"
-                    />
 
-                <ImageView
-                    android:id="@+id/shade_11"
-                    android:layout_width="34dp"
-                    android:layout_height="34dp"
-                    android:layout_gravity="center_vertical"
-                    android:padding="8dp"
-                    android:visibility="gone"
-                   android:src="@drawable/shade_11_unselected"
-                     />
 
-                <ImageView
-                    android:id="@+id/shade_12"
-                    android:layout_width="34dp"
-                    android:layout_height="34dp"
-                    android:layout_gravity="center_vertical"
-                    android:padding="8dp"
-                   android:src="@drawable/shade_12_unselected"
-                    />
+            </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/shade_13"
-                    android:layout_width="34dp"
-                    android:layout_height="34dp"
-                    android:layout_gravity="center_vertical"
-                    android:padding="8dp"
-                   android:src="@drawable/shade_13_unselected"
-                 />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_horizontal"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/shade_14"
-                    android:layout_width="34dp"
-                    android:layout_height="34dp"
-                    android:layout_gravity="center_vertical"
-                    android:padding="8dp"
-                   android:src="@drawable/shade_14_unselected"
-                     />
 
-                <ImageView
-                    android:id="@+id/shade_15"
-                    android:layout_width="34dp"
-                    android:layout_height="34dp"
-                    android:layout_gravity="center_vertical"
-                    android:padding="8dp"
-                    android:visibility="gone"
-                    android:src="@drawable/shade_15_unselected"
-                    />
-                <ImageView
-                    android:id="@+id/shade_16"
-                    android:layout_width="34dp"
-                    android:layout_height="34dp"
-                    android:layout_gravity="center_vertical"
-                    android:padding="8dp"
-                    android:src="@drawable/shade_16_unselected"
-                    />
 
+
+                    <ImageView
+                        android:id="@+id/shade_9"
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
+                        android:layout_gravity="center_vertical"
+                        android:padding="8dp"
+                        android:visibility="visible"
+                        android:src="@drawable/shade_9_unselected" />
+
+                    <ImageView
+                        android:id="@+id/shade_10"
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
+                        android:layout_gravity="center_vertical"
+                        android:padding="8dp"
+                        android:src="@drawable/shade_10_unselected"
+                        />
+
+                    <ImageView
+                        android:id="@+id/shade_11"
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
+                        android:layout_gravity="center_vertical"
+                        android:padding="8dp"
+                        android:visibility="visible"
+                        android:src="@drawable/shade_11_unselected"
+                        />
+
+                    <ImageView
+                        android:id="@+id/shade_12"
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
+                        android:layout_gravity="center_vertical"
+                        android:padding="8dp"
+                        android:src="@drawable/shade_12_unselected"
+                        />
+
+                    <ImageView
+                        android:id="@+id/shade_13"
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
+                        android:layout_gravity="center_vertical"
+                        android:padding="8dp"
+                        android:src="@drawable/shade_13_unselected"
+                        />
+
+                    <ImageView
+                        android:id="@+id/shade_14"
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
+                        android:layout_gravity="center_vertical"
+                        android:padding="8dp"
+                        android:src="@drawable/shade_14_unselected"
+                        />
+
+                    <ImageView
+                        android:id="@+id/shade_15"
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
+                        android:layout_gravity="center_vertical"
+                        android:padding="8dp"
+                        android:visibility="visible"
+                        android:src="@drawable/shade_15_unselected"
+                        />
+                    <ImageView
+                        android:id="@+id/shade_16"
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
+                        android:layout_gravity="center_vertical"
+                        android:padding="8dp"
+                        android:src="@drawable/shade_16_unselected"
+                        />
+
+
+                </LinearLayout>
 
             </LinearLayout>
 

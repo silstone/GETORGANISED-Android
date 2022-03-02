@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/task_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="40dp"
+            android:drawablePadding="5dp"
+            android:fontFamily="@font/poppins_bold"
+            android:gravity="start"
+            android:text="Today, 04 Nov 2020"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/task_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="start"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:drawablePadding="5dp"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="start"
+            android:text="5 Tasks"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/task_date"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+
+
+            <LinearLayout
+                android:id="@+id/main_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:minHeight="60dp"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="60dp"
+                    android:layout_marginEnd="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/task_start_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="8dp"
+                        android:drawablePadding="5dp"
+                        android:fontFamily="@font/poppins_reguler"
+                        android:gravity="start"
+                        android:hint="-------"
+                        android:textColor="@color/black"
+                        android:textSize="10sp" />
+
+                    <ImageView
+                        android:layout_width="8dp"
+                        android:layout_height="45dp"
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="5dp"
+                        android:src="@drawable/cut_line" />
+
+                </LinearLayout>
+
+                <com.guanaj.easyswipemenulibrary.EasySwipeMenuLayout
+                    app:contentView="@+id/text_background"
+                    app:leftMenuView="@+id/delete"
+                    app:rightMenuView="@+id/done"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="60dp"
+                    android:background="@android:color/transparent">
+
+                    <LinearLayout
+                        android:id="@+id/delete"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:minHeight="60dp"
+                        android:background="@android:color/transparent"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="20dp"
+                            android:layout_height="wrap_content"
+                            android:minHeight="60dp"/>
+
+                        <LinearLayout
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/delete_background"
+                            android:gravity="center"
+                            android:minHeight="60dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/delete_icon"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/delete_icon" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="20dp"
+                            android:layout_height="wrap_content"
+                            android:minHeight="60dp"/>
+
+                    </LinearLayout>
+
+
+                    <androidx.cardview.widget.CardView
+
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        android:id="@+id/text_background"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="60dp"
+                        android:visibility="visible"
+                        card_view:cardCornerRadius="9dp"
+                        card_view:cardElevation="0dp"
+                        card_view:contentPadding="0dp">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="12dp">
+
+                            <TextView
+                                android:id="@+id/task_txt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_gravity="start"
+                                android:drawablePadding="5dp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:gravity="start"
+                                android:text="-------------"
+                                android:textColor="@color/white"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/task_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_gravity="start"
+                                android:drawablePadding="5dp"
+                                android:fontFamily="@font/poppins_semi_bold"
+                                android:gravity="start"
+                                android:text="-----"
+                                android:textColor="@color/white"
+                                android:textSize="10sp" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <LinearLayout
+                        android:id="@+id/done"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:minHeight="60dp"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="20dp"
+                            android:layout_height="wrap_content"
+                            android:minHeight="60dp"/>
+
+                        <LinearLayout
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:minHeight="60dp"
+                            android:background="@drawable/done_button_background"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/done_icon"
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/check" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="20dp"
+                            android:layout_height="wrap_content"
+                            android:minHeight="60dp"/>
+
+                    </LinearLayout>
+
+                </com.guanaj.easyswipemenulibrary.EasySwipeMenuLayout>
+
+
+            </LinearLayout>
+
+
+          <androidx.cardview.widget.CardView
+              android:id="@+id/inbox_view"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginStart="42dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="22dp"
+                android:visibility="gone"
+                card_view:cardBackgroundColor="#8392A5"
+                card_view:cardCornerRadius="9dp"
+                card_view:cardElevation="0dp"
+                card_view:contentPadding="0dp">
+
+                <TextView
+                    android:id="@+id/card_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center"
+                    android:text="Movie and dinner at Logix Mall"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+            </androidx.cardview.widget.CardView>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

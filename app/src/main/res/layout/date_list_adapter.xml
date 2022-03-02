@@ -34,10 +34,10 @@
 
 
         <TextView
-            android:id="@+id/Aug"
+            android:id="@+id/month_txt"
             android:layout_width="wrap_content"
             android:layout_height="14dp"
-            android:text="Aug"
+            android:text="--"
             android:fontFamily="@font/poppins_medium"
             android:textSize="7sp"
             android:layout_centerHorizontal="true"

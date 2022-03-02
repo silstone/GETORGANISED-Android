@@ -7,8 +7,14 @@ import android.os.PersistableBundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.getorganized.R
+import com.getorganized.utils.Constant
+import com.getorganized.utils.SharedPref
 
 class SplashScreen : AppCompatActivity() {
+
+    val sharedPref = SharedPref()
+    val constant = Constant()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash)
@@ -18,10 +24,18 @@ class SplashScreen : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
-        Handler().postDelayed({
-            val intent = Intent(this, Welcome::class.java)
+        val login = sharedPref.get_bool_value(this, constant.USER_LOGIN)
+
+        if (login) {
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-            finish()
-        }, 3000)
+        } else {
+
+            Handler().postDelayed({
+                val intent = Intent(this, Welcome::class.java)
+                startActivity(intent)
+                finish()
+            }, 2000)
+        }
     }
 }

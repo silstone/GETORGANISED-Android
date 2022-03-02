@@ -1,10 +1,12 @@
-package com.getorganized.adapters
+ package com.getorganized.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Canvas
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.GridLayout
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -13,14 +15,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.getorganized.R
 import com.getorganized.activity.MainActivity
 import com.getorganized.activity.ScheduleTask
-import com.getorganized.model_classes.SubTask
 import com.getorganized.model_classes.TaskList
 
 
-class TaskListAdapter(val items: ArrayList<TaskList>, val context: Context) :
-    RecyclerView.Adapter<MyHolder>() {
 
-    lateinit var main: MainActivity
+class AddListAdapter(val items: ArrayList<TaskList>, val context: Context) :
+    RecyclerView.Adapter<ViewMyHolder>() {
+
+    lateinit var scheduleTask: ScheduleTask
 
 
     var row_index=1000
@@ -34,18 +36,18 @@ class TaskListAdapter(val items: ArrayList<TaskList>, val context: Context) :
 
 
     init {
-        main = context as MainActivity
+        scheduleTask = context as ScheduleTask
     }
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
-        return MyHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.task_list_adapter, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewMyHolder {
+        return ViewMyHolder(
+            LayoutInflater.from(context).inflate(R.layout.add_list_adapter, parent, false)
         )
     }
 
 
-    override fun onBindViewHolder(holder: MyHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewMyHolder, position: Int) {
 
         holder.name.setText(items.get(position).getname())
 
@@ -54,119 +56,119 @@ class TaskListAdapter(val items: ArrayList<TaskList>, val context: Context) :
 
         if (color.equals("shade_0")) {
             holder.bottomview.setBackgroundColor(
-                context!!.resources.getColor(
+                context.resources.getColor(
                     R.color.shade_0
                 )
             )
         }
         if (color.equals("shade_1")) {
             holder.bottomview.setBackgroundColor(
-                context!!.resources.getColor(
+                context.resources.getColor(
                     R.color.shade_1
                 )
             )
         }
         if (color.equals("shade_2")) {
             holder.bottomview.setBackgroundColor(
-                context!!.resources.getColor(
+                context.resources.getColor(
                     R.color.shade_2
                 )
             )
         }
         if (color.equals("shade_3")) {
             holder.bottomview.setBackgroundColor(
-                context!!.resources.getColor(
+                context.resources.getColor(
                     R.color.shade_3
                 )
             )
         }
         if (color.equals("shade_4")) {
             holder.bottomview.setBackgroundColor(
-                context!!.resources.getColor(
+                context.resources.getColor(
                     R.color.shade_4
                 )
             )
         }
         if (color.equals("shade_5")) {
             holder.bottomview.setBackgroundColor(
-                context!!.resources.getColor(
+                context.resources.getColor(
                     R.color.shade_5
                 )
             )
         }
         if (color.equals("shade_6")) {
             holder.bottomview.setBackgroundColor(
-                context!!.resources.getColor(
+                context.resources.getColor(
                     R.color.shade_6
                 )
             )
         }
         if (color.equals("shade_7")) {
             holder.bottomview.setBackgroundColor(
-                context!!.resources.getColor(
+                context.resources.getColor(
                     R.color.shade_7
                 )
             )
         }
         if (color.equals("shade_8")) {
             holder.bottomview.setBackgroundColor(
-                context!!.resources.getColor(
+                context.resources.getColor(
                     R.color.shade_8
                 )
             )
         }
         if (color.equals("shade_9")) {
             holder.bottomview.setBackgroundColor(
-                context!!.resources.getColor(
+                context.resources.getColor(
                     R.color.shade_9
                 )
             )
         }
         if (color.equals("shade_10")) {
             holder.bottomview.setBackgroundColor(
-                context!!.resources.getColor(
+                context.resources.getColor(
                     R.color.shade_10
                 )
             )
         }
         if (color.equals("shade_11")) {
             holder.bottomview.setBackgroundColor(
-                context!!.resources.getColor(
+                context.resources.getColor(
                     R.color.shade_11
                 )
             )
         }
         if (color.equals("shade_12")) {
             holder.bottomview.setBackgroundColor(
-                context!!.resources.getColor(
+                context.resources.getColor(
                     R.color.shade_12
                 )
             )
         }
         if (color.equals("shade_13")) {
             holder.bottomview.setBackgroundColor(
-                context!!.resources.getColor(
+                context.resources.getColor(
                     R.color.shade_13
                 )
             )
         }
         if (color.equals("shade_14")) {
             holder.bottomview.setBackgroundColor(
-                context!!.resources.getColor(
+                context.resources.getColor(
                     R.color.shade_14
                 )
             )
         }
         if (color.equals("shade_15")) {
             holder.bottomview.setBackgroundColor(
-                context!!.resources.getColor(
+                context.resources.getColor(
                     R.color.shade_15
                 )
             )
         }
         if (color.equals("shade_16")) {
             holder.bottomview.setBackgroundColor(
-                context!!.resources.getColor(
+                context.resources.getColor(
                     R.color.shade_16
                 )
             )
@@ -182,15 +184,15 @@ class TaskListAdapter(val items: ArrayList<TaskList>, val context: Context) :
 
         if(row_index==position){
             holder.name.setTypeface(typeface)
-            holder.name.setTextColor(context!!.resources.getColor(R.color.black))
+            holder.name.setTextColor(context.resources.getColor(R.color.black))
             holder.check_btn.visibility = View.VISIBLE
-            holder.name_layout.setBackground(context!!.resources.getDrawable(R.drawable.schedule_txt_background))
-            main.showListName(items.get(position).getname().toString(), items.get(position).getcolorname().toString())
+            holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.schedule_txt_background))
+            scheduleTask.showListName(items.get(position).getname().toString(), items.get(position).getcolorname().toString())
         }
         else
         {
             holder.name.setTypeface(typeface2)
-            holder.name.setTextColor(context!!.resources.getColor(R.color.black))
+            holder.name.setTextColor(context.resources.getColor(R.color.black))
             holder.check_btn.visibility = View.GONE
             holder.name_layout.setBackground(null)
 
@@ -203,7 +205,7 @@ class TaskListAdapter(val items: ArrayList<TaskList>, val context: Context) :
 }
 
 
-class MyHolder(view: View) : RecyclerView.ViewHolder(view) {
+class ViewMyHolder(view: View) : RecyclerView.ViewHolder(view) {
 
 
 
@@ -213,3 +215,5 @@ class MyHolder(view: View) : RecyclerView.ViewHolder(view) {
     val check_btn = view.findViewById(R.id.check_btn) as ImageView
 
 }
+
+

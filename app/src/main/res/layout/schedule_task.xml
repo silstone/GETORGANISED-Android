@@ -115,7 +115,7 @@
                 >
 
                 <com.applandeo.materialcalendarview.CalendarView
-                    android:id="@+id/calander_view"
+                    android:id="@+id/calender_view1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="2dp"
@@ -160,6 +160,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="0dp"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
@@ -240,787 +244,17 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <RelativeLayout
-                        android:id="@+id/today_tasks"
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/schedule_sublist_recycler"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/white">
-
-                        <TextView
-                            android:id="@+id/task_date"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:layout_marginStart="40dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginEnd="40dp"
-                            android:drawablePadding="5dp"
-                            android:fontFamily="@font/poppins_bold"
-                            android:gravity="start"
-                            android:text="Today, 04 Nov 2020"
-                            android:textColor="@color/black"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            android:id="@+id/task_count"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_gravity="start"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginEnd="20dp"
-                            android:drawablePadding="5dp"
-                            android:fontFamily="@font/poppins_medium"
-                            android:gravity="start"
-                            android:text="5 Tasks"
-                            android:textColor="@color/black"
-                            android:textSize="12sp" />
-
-
-                        <LinearLayout
-                            android:id="@+id/today"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/task_date"
-                            android:layout_marginTop="10dp"
-                            android:orientation="vertical">
-
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="20dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginEnd="20dp"
-                                android:orientation="horizontal"
-                                android:visibility="visible">
-
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:layout_marginEnd="5dp">
-
-                                    <TextView
-                                        android:id="@+id/task_time"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="start"
-                                        android:layout_marginStart="20dp"
-                                        android:drawablePadding="5dp"
-                                        android:layout_marginEnd="8dp"
-                                        android:fontFamily="@font/poppins_reguler"
-                                        android:gravity="top"
-                                        android:text="12:30 PM"
-                                        android:textColor="@color/black"
-                                        android:textSize="10sp" />
-
-
-                                    <ImageView
-                                        android:layout_width="8dp"
-                                        android:layout_height="45dp"
-                                        android:layout_marginEnd="5dp"
-                                        android:layout_gravity="end"
-                                        android:src="@drawable/cut_line" />
-
-
-                                </LinearLayout>
-
-                                <androidx.cardview.widget.CardView
-
-                                    xmlns:android="http://schemas.android.com/apk/res/android"
-                                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                                    xmlns:tools="http://schemas.android.com/tools"
-                                    android:id="@+id/cardview"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:visibility="visible"
-                                    card_view:cardBackgroundColor="#A362EA"
-                                    card_view:cardCornerRadius="9dp"
-                                    card_view:cardElevation="0dp"
-                                    card_view:contentPadding="0dp">
-
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical"
-                                        android:padding="12dp">
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_alignParentEnd="true"
-                                            android:layout_gravity="start"
-                                            android:drawablePadding="5dp"
-                                            android:fontFamily="@font/poppins_medium"
-                                            android:gravity="start"
-                                            android:text="Design Meeting with John"
-                                            android:textColor="@color/white"
-                                            android:textSize="12sp" />
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_alignParentEnd="true"
-                                            android:layout_gravity="start"
-                                            android:drawablePadding="5dp"
-                                            android:fontFamily="@font/poppins_semi_bold"
-                                            android:gravity="start"
-                                            android:text="12:30-12:45"
-                                            android:textColor="@color/white"
-                                            android:textSize="10sp" />
-
-
-                                    </LinearLayout>
-
-                                </androidx.cardview.widget.CardView>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/task_date"
-                                android:layout_marginStart="20dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginEnd="20dp"
-                                android:orientation="horizontal"
-                                android:visibility="visible">
-
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:layout_marginEnd="5dp">
-                                <TextView
-                                    android:id="@+id/task_time2"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="start"
-                                    android:layout_marginStart="16dp"
-                                    android:layout_marginEnd="8dp"
-                                    android:drawablePadding="5dp"
-                                    android:fontFamily="@font/poppins_reguler"
-                                    android:gravity="start"
-                                    android:text="02:30 PM"
-                                    android:textColor="@color/black"
-                                    android:textSize="10sp" />
-
-                                <ImageView
-                                    android:layout_width="8dp"
-                                    android:layout_height="45dp"
-                                    android:layout_marginEnd="5dp"
-                                    android:layout_gravity="end"
-                                    android:src="@drawable/cut_line" />
-
-                                </LinearLayout>
-
-                                <com.guanaj.easyswipemenulibrary.EasySwipeMenuLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="80dp"
-                                    android:background="@android:color/transparent"
-                                    app:contentView="@+id/cardview2"
-                                    app:leftMenuView="@+id/delete"
-                                    app:rightMenuView="@+id/done">
-
-                                    <LinearLayout
-                                        android:id="@+id/delete"
-                                        android:layout_width="100dp"
-                                        android:layout_height="match_parent"
-                                        android:background="@android:color/transparent"
-                                        android:orientation="horizontal">
-
-                                        <View
-                                            android:layout_width="20dp"
-                                            android:layout_height="match_parent" />
-
-                                        <LinearLayout
-                                            android:layout_width="60dp"
-                                            android:layout_height="match_parent"
-                                            android:background="@drawable/delete_background"
-                                            android:gravity="center"
-                                            android:orientation="horizontal">
-
-                                            <ImageView
-                                                android:id="@+id/delete_icon"
-                                                android:layout_width="24dp"
-                                                android:layout_height="24dp"
-                                                android:layout_gravity="center"
-                                                android:src="@drawable/delete_icon" />
-                                        </LinearLayout>
-
-                                        <View
-                                            android:layout_width="20dp"
-                                            android:layout_height="match_parent" />
-                                    </LinearLayout>
-
-
-                                    <androidx.cardview.widget.CardView
-
-                                        xmlns:android="http://schemas.android.com/apk/res/android"
-                                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                                        xmlns:tools="http://schemas.android.com/tools"
-                                        android:id="@+id/cardview2"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:visibility="visible"
-                                        card_view:cardBackgroundColor="#A362EA"
-                                        card_view:cardCornerRadius="9dp"
-                                        card_view:cardElevation="0dp"
-                                        card_view:contentPadding="0dp">
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:orientation="vertical"
-                                            android:padding="12dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_alignParentEnd="true"
-                                                android:layout_gravity="start"
-                                                android:drawablePadding="5dp"
-                                                android:fontFamily="@font/poppins_medium"
-                                                android:gravity="start"
-                                                android:text="Call the team to discuss the progress of the project"
-                                                android:textColor="@color/white"
-                                                android:textSize="12sp" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_alignParentEnd="true"
-                                                android:layout_gravity="start"
-                                                android:drawablePadding="5dp"
-                                                android:fontFamily="@font/poppins_semi_bold"
-                                                android:gravity="start"
-                                                android:text="12:30-12:45"
-                                                android:textColor="@color/white"
-                                                android:textSize="10sp" />
-
-                                        </LinearLayout>
-
-                                    </androidx.cardview.widget.CardView>
-
-
-                                    <LinearLayout
-                                        android:id="@+id/done"
-                                        android:layout_width="100dp"
-                                        android:layout_height="match_parent"
-                                        android:background="@android:color/transparent"
-                                        android:gravity="center"
-                                        android:orientation="horizontal">
-
-                                        <View
-                                            android:layout_width="20dp"
-                                            android:layout_height="match_parent" />
-
-                                        <LinearLayout
-                                            android:layout_width="60dp"
-                                            android:layout_height="match_parent"
-                                            android:background="@drawable/done_button_background"
-                                            android:gravity="center"
-                                            android:orientation="horizontal">
-
-                                            <ImageView
-                                                android:id="@+id/done_icon"
-                                                android:layout_width="22dp"
-                                                android:layout_height="22dp"
-                                                android:layout_gravity="center"
-                                                android:src="@drawable/check" />
-
-                                        </LinearLayout>
-
-                                        <View
-                                            android:layout_width="20dp"
-                                            android:layout_height="match_parent" />
-
-                                    </LinearLayout>
-
-                                </com.guanaj.easyswipemenulibrary.EasySwipeMenuLayout>
-
-
-                            </LinearLayout>
-
-                            ///////////////////////////////////////////////////////////////////////////////
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/task_date"
-                                android:layout_marginStart="20dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginEnd="20dp"
-                                android:orientation="horizontal"
-                                android:visibility="visible">
-
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:layout_marginEnd="5dp">
-
-                                <TextView
-                                    android:id="@+id/task_time3"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentEnd="true"
-                                    android:layout_gravity="end"
-                                    android:layout_marginStart="16dp"
-                                    android:layout_marginEnd="5dp"
-                                    android:drawablePadding="5dp"
-                                    android:fontFamily="@font/poppins_reguler"
-                                    android:gravity="end"
-                                    android:text="05:30 PM"
-                                    android:textColor="@color/black"
-                                    android:textSize="10sp" />
-
-                                <ImageView
-                                    android:layout_width="8dp"
-                                    android:layout_height="45dp"
-                                    android:layout_gravity="end"
-                                    android:layout_marginEnd="3dp"
-                                    android:src="@drawable/cut_line" />
-
-                                </LinearLayout>
-
-                                <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                                    xmlns:tools="http://schemas.android.com/tools"
-                                    android:id="@+id/cardview3"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:visibility="visible"
-                                    card_view:cardBackgroundColor="#43C8DD"
-                                    card_view:cardCornerRadius="9dp"
-                                    card_view:cardElevation="0dp"
-                                    card_view:contentPadding="0dp">
-
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical"
-                                        android:padding="12dp">
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_alignParentEnd="true"
-                                            android:layout_gravity="start"
-                                            android:drawablePadding="5dp"
-                                            android:fontFamily="@font/poppins_medium"
-                                            android:gravity="start"
-                                            android:text="Movie and dinner at Logix Mall"
-                                            android:textColor="@color/white"
-                                            android:textSize="12sp" />
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_alignParentEnd="true"
-                                            android:layout_gravity="start"
-                                            android:drawablePadding="5dp"
-                                            android:fontFamily="@font/poppins_semi_bold"
-                                            android:gravity="start"
-                                            android:text="12:30-12:45"
-                                            android:textColor="@color/white"
-                                            android:textSize="10sp" />
-
-
-                                    </LinearLayout>
-
-                                </androidx.cardview.widget.CardView>
-
-                            </LinearLayout>
-
-                            ///////////////////////////////////////////////////////////////////////////////////
-
-
-                            <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                                xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                                xmlns:tools="http://schemas.android.com/tools"
-                                android:layout_width="match_parent"
-                                android:layout_height="45dp"
-                                android:layout_marginStart="42dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginEnd="22dp"
-                                android:visibility="visible"
-                                card_view:cardBackgroundColor="#8392A5"
-                                card_view:cardCornerRadius="9dp"
-                                card_view:cardElevation="0dp"
-                                card_view:contentPadding="0dp">
-
-                                <TextView
-                                    android:id="@+id/card_text"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center_horizontal"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"
-                                    android:text="Movie and dinner at Logix Mall"
-                                    android:textColor="@color/white"
-                                    android:textSize="14sp" />
-                            </androidx.cardview.widget.CardView>
-
-
-                            ///////////////////////////////////////////////////////////////////////////////////////
-
-                            <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                                xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                                xmlns:tools="http://schemas.android.com/tools"
-                                android:layout_width="match_parent"
-                                android:layout_height="45dp"
-                                android:layout_marginStart="42dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginEnd="22dp"
-                                android:visibility="visible"
-                                card_view:cardBackgroundColor="#8392A5"
-                                card_view:cardCornerRadius="9dp"
-                                card_view:cardElevation="0dp"
-                                card_view:contentPadding="0dp">
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center_horizontal"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"
-                                    android:text="Buy Groceries"
-                                    android:textColor="@color/white"
-                                    android:textSize="14sp" />
-                            </androidx.cardview.widget.CardView>
-
-
-                        </LinearLayout>
-
-                    </RelativeLayout>
-
-
-                    <RelativeLayout
-                        android:id="@+id/tomorrow_tasks"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginBottom="20dp"
-                        android:layout_weight="1"
-                        android:background="@color/white">
-
-                        <TextView
-                            android:id="@+id/task_date2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:layout_marginStart="40dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginEnd="40dp"
-                            android:drawablePadding="5dp"
-                            android:fontFamily="@font/poppins_bold"
-                            android:gravity="start"
-                            android:text="Tomorrow, 04 Nov 2020"
-                            android:textColor="@color/black"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            android:id="@+id/task_count2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_gravity="start"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginEnd="20dp"
-                            android:drawablePadding="5dp"
-                            android:fontFamily="@font/poppins_medium"
-                            android:gravity="start"
-                            android:text="3 Tasks"
-                            android:textColor="@color/black"
-                            android:textSize="12sp" />
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/task_date2"
-                            android:layout_marginTop="10dp"
-                            android:orientation="vertical">
-
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="20dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginEnd="20dp"
-                                android:orientation="horizontal"
-                                android:visibility="visible">
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:layout_marginEnd="5dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="end"
-                                    android:layout_marginStart="20dp"
-                                    android:layout_marginEnd="5dp"
-                                    android:drawablePadding="5dp"
-                                    android:fontFamily="@font/poppins_reguler"
-                                    android:gravity="start"
-                                    android:text="02:30 PM"
-                                    android:textColor="@color/black"
-                                    android:textSize="10sp" />
-
-                                <ImageView
-                                    android:layout_width="8dp"
-                                    android:layout_height="45dp"
-                                    android:layout_gravity="end"
-                                    android:layout_marginEnd="2dp"
-                                    android:src="@drawable/cut_line" />
-
-                                </LinearLayout>
-
-                                <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                                    xmlns:tools="http://schemas.android.com/tools"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:visibility="visible"
-                                    card_view:cardBackgroundColor="#A362EA"
-                                    card_view:cardCornerRadius="9dp"
-                                    card_view:cardElevation="0dp"
-                                    card_view:contentPadding="0dp">
-
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical"
-                                        android:padding="12dp">
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_alignParentEnd="true"
-                                            android:layout_gravity="start"
-                                            android:drawablePadding="5dp"
-                                            android:fontFamily="@font/poppins_medium"
-                                            android:gravity="start"
-                                            android:text="Movie and dinner at Logix Mall"
-                                            android:textColor="@color/white"
-                                            android:textSize="12sp" />
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_alignParentEnd="true"
-                                            android:layout_gravity="start"
-                                            android:drawablePadding="5dp"
-                                            android:fontFamily="@font/poppins_semi_bold"
-                                            android:gravity="start"
-                                            android:text="12:30-12:45"
-                                            android:textColor="@color/white"
-                                            android:textSize="10sp" />
-
-
-                                    </LinearLayout>
-
-                                </androidx.cardview.widget.CardView>
-
-                            </LinearLayout>
-
-                            /////////////////////////////////////////////////////////////
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/task_date"
-                                android:layout_marginStart="20dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginEnd="20dp"
-                                android:orientation="horizontal"
-                                android:visibility="visible">
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:layout_marginEnd="5dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="end"
-                                    android:layout_marginStart="20dp"
-                                    android:layout_marginEnd="5dp"
-                                    android:drawablePadding="5dp"
-                                    android:fontFamily="@font/poppins_reguler"
-                                    android:gravity="start"
-                                    android:text="02:30 PM"
-                                    android:textColor="@color/black"
-                                    android:textSize="10sp" />
-
-
-                                <ImageView
-                                    android:layout_width="8dp"
-                                    android:layout_height="55dp"
-                                    android:layout_marginEnd="5dp"
-                                    android:layout_gravity="end"
-                                    android:src="@drawable/cut_line" />
-
-                                </LinearLayout>
-
-                                <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                                    xmlns:tools="http://schemas.android.com/tools"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:visibility="visible"
-                                    card_view:cardBackgroundColor="@color/sky_blue"
-                                    card_view:cardCornerRadius="9dp"
-                                    card_view:cardElevation="0dp"
-                                    card_view:contentPadding="0dp">
-
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical"
-                                        android:padding="12dp">
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_alignParentEnd="true"
-                                            android:layout_gravity="start"
-                                            android:drawablePadding="5dp"
-                                            android:fontFamily="@font/poppins_medium"
-                                            android:gravity="start"
-                                            android:text="Call the team to discuss the progress of the project"
-                                            android:textColor="@color/white"
-                                            android:textSize="12sp" />
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_alignParentEnd="true"
-                                            android:layout_gravity="start"
-                                            android:drawablePadding="5dp"
-                                            android:fontFamily="@font/poppins_semi_bold"
-                                            android:gravity="start"
-                                            android:text="12:30-12:45"
-                                            android:textColor="@color/white"
-                                            android:textSize="10sp" />
-
-                                    </LinearLayout>
-
-                                </androidx.cardview.widget.CardView>
-
-                            </LinearLayout>
-
-                            ///////////////////////////////////////////////////////////////////////////////
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/task_date"
-                                android:layout_marginStart="20dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginEnd="20dp"
-                                android:orientation="horizontal"
-                                android:visibility="visible">
-
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:layout_marginEnd="5dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="end"
-                                    android:layout_marginStart="20dp"
-                                    android:layout_marginEnd="5dp"
-                                    android:drawablePadding="5dp"
-                                    android:fontFamily="@font/poppins_reguler"
-                                    android:gravity="start"
-                                    android:text="05:30 PM"
-                                    android:textColor="@color/black"
-                                    android:textSize="10sp" />
-
-
-                                <ImageView
-                                    android:layout_width="8dp"
-                                    android:layout_height="45dp"
-                                    android:layout_marginEnd="5dp"
-                                    android:layout_gravity="end"
-                                    android:src="@drawable/cut_line" />
-
-                                </LinearLayout>
-
-                                <androidx.cardview.widget.CardView
-
-                                    xmlns:android="http://schemas.android.com/apk/res/android"
-                                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                                    xmlns:tools="http://schemas.android.com/tools"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:visibility="visible"
-                                    card_view:cardBackgroundColor="#43C8DD"
-                                    card_view:cardCornerRadius="9dp"
-                                    card_view:cardElevation="0dp"
-                                    card_view:contentPadding="0dp">
-
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical"
-                                        android:padding="12dp">
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_alignParentEnd="true"
-                                            android:layout_gravity="start"
-                                            android:drawablePadding="5dp"
-                                            android:fontFamily="@font/poppins_medium"
-                                            android:gravity="start"
-                                            android:text="Movie and dinner at Logix Mall"
-                                            android:textColor="@color/white"
-                                            android:textSize="12sp" />
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_alignParentEnd="true"
-                                            android:layout_gravity="start"
-                                            android:drawablePadding="5dp"
-                                            android:fontFamily="@font/poppins_semi_bold"
-                                            android:gravity="start"
-                                            android:text="12:30-12:45"
-                                            android:textColor="@color/white"
-                                            android:textSize="10sp" />
-
-
-                                    </LinearLayout>
-
-                                </androidx.cardview.widget.CardView>
-
-                            </LinearLayout>
-
-                            ///////////////////////////////////////////////////////////////////////////////////
-
-
-                        </LinearLayout>
-
-
-                    </RelativeLayout>
+                        android:layout_above="@+id/new_list_txt"
+                        android:layout_below="@+id/task"
+                        android:layout_marginTop="10dp"
+                        android:paddingBottom="50dp"
+                        />
 
                 </LinearLayout>
 
@@ -1051,8 +285,7 @@
             android:layout_width="30dp"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
-            android:background="@drawable/swipe_left_right_backgr"/>
--->
+            android:background="@drawable/swipe_left_right_backgr"/>-->
 
 
         <!-- <ImageView
@@ -1091,6 +324,9 @@
         android:orientation="vertical"
         android:visibility="gone">
 
+
+
+
         <LinearLayout
             android:id="@+id/bacup_layout"
             android:layout_width="match_parent"
@@ -1106,6 +342,18 @@
             android:layout_centerInParent="true"
             android:background="@drawable/create_list_background"
             android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/cross_task"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="start"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/cross_icon"
+                android:visibility="visible" />
 
             <TextView
                 android:id="@+id/add_task"
@@ -1188,7 +436,8 @@
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/poppins_medium"
                         android:gravity="start"
-                        android:text="@string/add_to_list"
+                        android:hint="@string/add_to_list"
+                        android:textColorHint="@color/black"
                         android:textColor="@color/black"
                         android:textSize="13sp" />
 
@@ -1219,7 +468,8 @@
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/poppins_medium"
                         android:gravity="start"
-                        android:text="@string/schedule"
+                        android:hint="@string/schedule"
+                        android:textColorHint="@color/black"
                         android:textColor="@color/black"
                         android:textSize="13sp" />
 
@@ -1425,7 +675,7 @@
 
 
                     <com.applandeo.materialcalendarview.CalendarView
-                        android:id="@+id/calar_view"
+                        android:id="@+id/calender_view2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="2dp"
@@ -1436,6 +686,7 @@
                         android:theme="@style/CalenderViewCustom"
                         android:visibility="visible"
                         app:pagesColor="@color/white"
+                        android:clickable="false"
                         android:weekDayTextAppearance="@style/CalenderViewWeekCustomText"
                         android:weekNumberColor="@color/black"
                         app:headerColor="@color/white"
@@ -1454,15 +705,9 @@
                     android:background="@color/white">
 
 
-                    <!--<androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recycler_list"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:minHeight="300dp"/>-->
 
                     <LinearLayout
-                        android:id="@+id/recycler_list"
+                        android:id="@+id/sublist_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -1472,78 +717,14 @@
                             android:layout_height="1dp"
                             android:background="@color/white" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:layout_marginStart="20dp"
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/sublist_recycler"
+                            android:layout_width="match_parent"
+                            android:layout_height="250dp"
                             android:layout_marginTop="10dp"
-                            android:layout_marginEnd="40dp"
-                            android:fontFamily="@font/poppins_bold"
-                            android:text="10:00am-11:20am"
-                            android:textColor="@color/black"
-                            android:textSize="10sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginEnd="40dp"
-                            android:layout_marginBottom="15dp"
-                            android:fontFamily="@font/poppins_medium"
-                            android:text="Call the team for project status."
-                            android:textColor="@color/txt_gray"
-                            android:textSize="13sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="0dp"
-                            android:layout_marginEnd="40dp"
-                            android:fontFamily="@font/poppins_bold"
-                            android:text="12:00pm-12:20pm"
-                            android:textColor="@color/black"
-                            android:textSize="10sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginEnd="40dp"
-                            android:layout_marginBottom="20dp"
-                            android:fontFamily="@font/poppins_medium"
-                            android:text="Call the team to discuss the progress of the project"
-                            android:textColor="@color/txt_gray"
-                            android:textSize="13sp" />
+                            />
 
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="0dp"
-                            android:layout_marginEnd="40dp"
-                            android:fontFamily="@font/poppins_bold"
-                            android:text="12:00pm-12:20pm"
-                            android:textColor="@color/black"
-                            android:textSize="10sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginEnd="40dp"
-                            android:layout_marginBottom="15dp"
-                            android:fontFamily="@font/poppins_medium"
-                            android:text="Call the team to discuss the progress of the project"
-                            android:textColor="@color/txt_gray"
-                            android:textSize="13sp" />
 
                     </LinearLayout>
 
@@ -1552,7 +733,7 @@
                         android:id="@+id/vu1"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_below="@+id/recycler_list"
+                        android:layout_below="@+id/sublist_layout"
                         android:layout_marginTop="15dp"
                         android:background="@color/light_gray" />
 
@@ -1586,7 +767,7 @@
                                 android:layout_marginStart="5dp"
                                 android:layout_toEndOf="@+id/start_clock_img"
                                 android:fontFamily="@font/bahnschrift"
-                                android:text="10:00 AM"
+                                android:text="00:00"
                                 android:textColor="@color/button_color"
                                 android:textSize="20sp" />
 
@@ -1637,7 +818,7 @@
                                 android:layout_marginStart="5dp"
                                 android:layout_toEndOf="@+id/end_clock_img"
                                 android:fontFamily="@font/bahnschrift"
-                                android:text="11:00 AM"
+                                android:text="00:00"
                                 android:textColor="@color/button_color"
                                 android:textSize="20sp" />
 
@@ -1674,7 +855,7 @@
                     <RelativeLayout
                         android:id="@+id/date_picker_layout"
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
+                        android:layout_height="wrap_content"
                         android:layout_below="@+id/vu2"
                         android:layout_alignParentBottom="true"
                         android:background="@color/white"
@@ -1683,17 +864,19 @@
 
                         <com.github.florent37.singledateandtimepicker.SingleDateAndTimePicker
                             android:id="@+id/single_day_picker"
-                            android:layout_width="match_parent"
+                            android:layout_centerHorizontal="true"
+                            android:layout_width="400dp"
                             android:layout_height="400dp"
                             android:layout_centerInParent="true"
                             android:layout_marginStart="30dp"
                             android:layout_marginEnd="100dp"
                             android:gravity="start"
+                            android:visibility="gone"
                             app:fontFamily="@font/poppins_medium"
                             app:picker_curved="true"
                             app:picker_curvedMaxAngle="45"
                             app:picker_cyclic="true"
-                            app:picker_dayCount="31"
+                            app:picker_dayCount="60"
                             app:picker_displayHours="true"
                             app:picker_itemSpacing="6dp"
                             app:picker_mustBeOnFuture="true"
@@ -1702,6 +885,20 @@
                             app:picker_stepSizeMinutes="5"
                             app:picker_textSize="18sp"
                             app:picker_visibleItemCount="7" />
+
+
+                        <TextView
+                            android:id="@+id/ok"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="30dp"
+                            android:drawablePadding="5dp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="OK"
+                            android:textColor="@color/blue"
+                            android:textSize="14sp" />
 
 
                     </RelativeLayout>
@@ -1809,7 +1006,8 @@
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/poppins_medium"
                         android:gravity="start"
-                        android:text="@string/add_to_list"
+                        android:hint="@string/add_to_list"
+                        android:textColorHint="@color/black"
                         android:textColor="@color/black"
                         android:textSize="13sp" />
 
@@ -1839,7 +1037,8 @@
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/poppins_medium"
                         android:gravity="start"
-                        android:text="@string/schedule"
+                        android:hint="@string/schedule"
+                        android:textColorHint="@color/black"
                         android:textColor="@color/black"
                         android:textSize="13sp" />
 
