@@ -1,5 +1,6 @@
 package com.getorganized.activity
 
+import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
@@ -8,6 +9,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.util.Log.println
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
@@ -20,6 +22,7 @@ import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.core.text.trimmedLength
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.getorganized.R
@@ -32,6 +35,7 @@ import com.github.florent37.singledateandtimepicker.dialog.SingleDateAndTimePick
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import java.sql.DriverManager.println
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -70,7 +74,7 @@ class ScheduleTask : AppCompatActivity() {
     val value_list: MutableList<String> = ArrayList()
 
     lateinit var task_recycler_view: RecyclerView
-    lateinit var date_recycler_view:RecyclerView
+    lateinit var date_recycler_view: RecyclerView
     lateinit var sublist_recycler: RecyclerView
     lateinit var schedule_sublist_recycler: RecyclerView
 
@@ -123,13 +127,14 @@ class ScheduleTask : AppCompatActivity() {
         task_detail = findViewById(R.id.task_detail) as TextView
         var start_txt = findViewById(R.id.start_txt) as TextView
         var end_txt = findViewById(R.id.end_txt) as TextView
+        var txt_month_name = findViewById(R.id.txt_month_name) as TextView
 
         add_list_txt = findViewById(R.id.add_list_txt) as TextView
         schedule_txt = findViewById(R.id.schedule_txt) as TextView
         ok = findViewById(R.id.ok) as TextView
 
         cross_task = findViewById(R.id.cross_task) as ImageView
-         date_recycler_view = findViewById(R.id.date_recycler_view) as RecyclerView
+        date_recycler_view = findViewById(R.id.date_recycler_view) as RecyclerView
 
         val start_clock_img = findViewById(R.id.start_clock_img) as ImageView
         val end_clock_img = findViewById(R.id.end_clock_img) as ImageView
@@ -204,11 +209,9 @@ class ScheduleTask : AppCompatActivity() {
         schedule_sub_listadapter = Schedule_SubListAdapter(subtasklist, this)
 
 
-        mLayoutManager4 = LinearLayoutManager(this)
+        mLayoutManager4 = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
         date_recycler_view?.setLayoutManager(mLayoutManager4)
         date_listadapter = DateListAdapter(value_list, this)
-
-
 
 
         /*val hashMap_date: java.util.HashMap<Int, String> = java.util.HashMap<Int, String>()
@@ -247,11 +250,11 @@ class ScheduleTask : AppCompatActivity() {
         }
 
 
-        val myToast = Toast.makeText(
+        /*val myToast = Toast.makeText(
             applicationContext,
             "Calendar view is temporary for now, will change when functionality occurs",
             Toast.LENGTH_SHORT
-        ).show()
+        ).show()*/
 
 
         calender_view1.setOnTouchListener(object :
@@ -410,6 +413,7 @@ class ScheduleTask : AppCompatActivity() {
 
             val intent = Intent(this, Createlist::class.java)
             startActivity(intent)
+
         }
 
         menu_btn.setOnClickListener {
@@ -638,10 +642,8 @@ class ScheduleTask : AppCompatActivity() {
 
             override fun afterTextChanged(s: Editable) {
             }
-
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
             }
-
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 if (count > 0) {
                     // val myToast = Toast.makeText(applicationContext,""+count,Toast.LENGTH_SHORT).show()
@@ -904,7 +906,7 @@ class ScheduleTask : AppCompatActivity() {
                 task_recycler_view?.setAdapter(addlist_adapter)
                 addlist_adapter?.notifyDataSetChanged()
 
-                progressDialog.cancel()
+                //progressDialog.cancel()
                 getSubTasks()
             }
             .addOnFailureListener { exception ->
@@ -937,9 +939,10 @@ class ScheduleTask : AppCompatActivity() {
                     subtaskList.setColor(document.data.get(constant.color).toString())
 
                     subtasklist_main.add(subtaskList)
-                    val s_date = document.data.get(constant.date).toString().trim()
-                    if (s_date.equals("")) {}else{
-                        value_list.add(s_date)
+                    val s_date = document.data.get(constant.date).toString()
+                    if (s_date.equals("")) {
+                    } else {
+                        value_list.add(s_date.toString())
                     }
                     swipe_layout.visibility = View.VISIBLE
 
@@ -960,9 +963,12 @@ class ScheduleTask : AppCompatActivity() {
                 if (subtasklist.size > 0) {
 
                     if (value_list.size > 0) {
-
-                       Collections.sort(value_list, StringDateComparator())
                         Log.e("value_list", value_list.toString())
+                        Collections.sort(value_list, StringDateComparator())
+                    }
+
+                    if (subtasklist_main.size > 0) {
+                        Collections.sort(subtasklist_main, MainActivity.sortItems())
                     }
                     second_layout.visibility = View.VISIBLE
                     first_layout.visibility = View.GONE
@@ -982,11 +988,12 @@ class ScheduleTask : AppCompatActivity() {
                     date_recycler_view?.setAdapter(date_listadapter)
                     date_listadapter?.notifyDataSetChanged()
 
-
+                    progressDialog.cancel()
 
                 } else {
                     second_layout.visibility = View.GONE
                     first_layout.visibility = View.VISIBLE
+                    progressDialog.cancel()
                 }
 
 
@@ -1133,11 +1140,34 @@ class ScheduleTask : AppCompatActivity() {
 
 
     class StringDateComparator : Comparator<String?> {
-        var dateFormat = SimpleDateFormat("MMM dd, yyyy")  //Mar 03, 2022
+
+
+        var dateFormat = SimpleDateFormat("MMM dd, yyyy")  //Mar 03, 2024
         override fun compare(lhs: String?, rhs: String?): Int {
             return dateFormat.parse(lhs).compareTo(dateFormat.parse(rhs))
         }
     }
+
+/*Collections.sort(datestring, new Comparator<String>() {
+   DateFormat f = new SimpleDateFormat("dd/MM/yyyy '@'hh:mm a");
+   @Override
+   public int compare(String o1, String o2) {
+     try {
+       return f.parse(o1).compareTo(f.parse(o2));
+     } catch (ParseException e) {
+       throw new IllegalArgumentException(e);
+     }
+   }
+ });*/
+    
+    internal class shorting : Comparator<SubTask?> {
+        override fun compare(a: SubTask?, b: SubTask?): Int {
+            return a?.getDate().toString().compareTo(b?.getDate().toString())
+        }
+    }
+
+
+
 
 
 }

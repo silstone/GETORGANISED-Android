@@ -1,10 +1,13 @@
 package com.getorganized.activity
 
 import android.app.ProgressDialog
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.os.PersistableBundle
 import android.util.Log
+import android.util.Log.println
 import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
@@ -19,6 +22,8 @@ import com.getorganized.model_classes.SubTask
 import com.getorganized.utils.Constant
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import java.sql.DriverManager
+import java.util.*
 
 class CompletedList_Activity : AppCompatActivity() {
 
@@ -58,7 +63,7 @@ class CompletedList_Activity : AppCompatActivity() {
         complete_recycler.layoutManager = mLayoutManager
 
         completed_adapter = Completed_Adapter(completedlist, this)
-        complete_recycler?.setAdapter(completed_adapter)
+        complete_recycler.setAdapter(completed_adapter)
         completed_adapter?.notifyDataSetChanged()
 
 
@@ -71,12 +76,6 @@ class CompletedList_Activity : AppCompatActivity() {
                 finish()
             }
         }
-
-
-
-
-
-
         getSubTasks()
     }
 
@@ -94,7 +93,7 @@ class CompletedList_Activity : AppCompatActivity() {
 
                 completedlist.clear()
                 for (document in result) {
-                    Log.e("success", "${document.id} => ${document.data}")
+                   // Log.e("success", "${document.id} => ${document.data}")
 
                     val subtaskList: SubTask = SubTask()
                     subtaskList.setList_name(document.data.get(constant.list_name).toString())
@@ -113,10 +112,21 @@ class CompletedList_Activity : AppCompatActivity() {
                     }
 
                 }
-                progressDialog.cancel()
-                completed_adapter = Completed_Adapter(completedlist, this)
-                complete_recycler?.setAdapter(completed_adapter)
-                completed_adapter?.notifyDataSetChanged()
+                if (completedlist.size > 0) {
+                    Log.e("completedlist", completedlist.toString())
+                    Collections.sort(completedlist, MainActivity.sortItems())
+
+                }
+
+                Handler().postDelayed({
+                    Log.e("completedlist", completedlist.toString())
+                    progressDialog.cancel()
+                    completed_adapter = Completed_Adapter(completedlist, this)
+                    complete_recycler?.setAdapter(completed_adapter)
+                    completed_adapter?.notifyDataSetChanged()
+                }, 3000)
+
+
 
             }
             .addOnFailureListener { exception ->

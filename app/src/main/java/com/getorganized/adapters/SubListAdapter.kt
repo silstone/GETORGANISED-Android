@@ -18,6 +18,7 @@ class SubListAdapter(): RecyclerView.Adapter<SubListAdapter.ViewHolder>() {
     var color: String?= ""
     private  var taskname: String?= ""
 
+
     constructor(list: List<SubTask>, context: Context) : this() {
         mList = list
         this.taskname = taskname

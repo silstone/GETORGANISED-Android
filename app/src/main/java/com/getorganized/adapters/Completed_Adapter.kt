@@ -10,11 +10,15 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.getorganized.R
 import com.getorganized.model_classes.SubTask
+import com.getorganized.utils.Constant
+import com.getorganized.utils.SharedPref
 
 class Completed_Adapter() : RecyclerView.Adapter<Completed_Adapter.ViewHolder>() {
 
     lateinit var mList: List<SubTask>
     private var context: Context? = null
+    val sharedPref = SharedPref()
+    val constant = Constant()
 
     constructor(list: List<SubTask>, context: Context) : this() {
         mList = list
@@ -32,20 +36,37 @@ class Completed_Adapter() : RecyclerView.Adapter<Completed_Adapter.ViewHolder>()
     // binds the list items to a view
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
+
+        val s_yesterday = sharedPref.get_value(context!!, constant.yesterday)
+        val s_today = sharedPref.get_value(context!!, constant.today)
+        val s_tomorrow = sharedPref.get_value(context!!, constant.tomorrow)
+
+
         val ItemsViewModel = mList[position]
         //  holder.three_dots_img.setImageResource(ItemsViewModel.image)
         holder.task_name.text = ItemsViewModel.getList_name()
         holder.title.setText(ItemsViewModel.getTitle())
-        holder.title.setPaintFlags( holder.title.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
+        holder.title.setPaintFlags(holder.title.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
         var start = ItemsViewModel.getStart_time().toString().trim()
         var end = ItemsViewModel.getEnd_time().toString().trim()
         holder.time.setText(start + "-" + end)
 
         var date = ItemsViewModel.getDate()
         if (date.equals("null") || date.equals("")) {
-            holder.date.visibility = View.GONE
+            holder.txt_date.visibility = View.GONE
         } else {
-            holder.date.setText(ItemsViewModel.getDate())
+            holder.txt_date.setText(ItemsViewModel.getDate())
+        }
+        constant.complete_time = mList.get(position).getDate().toString().trim()
+
+        if (constant.complete_time.equals(s_yesterday)) {
+            holder.txt_date.setText("Yesterday")
+        } else if (constant.complete_time.equals(s_today)) {
+            holder.txt_date.setText("Today")
+        } else if (constant.complete_time.equals(s_tomorrow)) {
+            holder.txt_date.setText("Tomorrow")
+        } else {
+            holder.txt_date.setText(mList.get(position).getDate().toString().trim())
         }
 
 
@@ -201,7 +222,7 @@ class Completed_Adapter() : RecyclerView.Adapter<Completed_Adapter.ViewHolder>()
     // Holds the views for adding it to image and text
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
 
-        val date: TextView = itemView.findViewById(R.id.date)
+        val txt_date: TextView = itemView.findViewById(R.id.txt_date)
         val title: TextView = itemView.findViewById(R.id.title)
         val time: TextView = itemView.findViewById(R.id.time)
         val task_name: TextView = itemView.findViewById(R.id.task_name)

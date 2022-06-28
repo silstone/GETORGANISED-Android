@@ -12,6 +12,7 @@
      android:roundIcon="@mipmap/app_icon"
      android:supportsRtl="true"
      android:theme="@style/Theme.GetOrganized">
+
   <activity android:name=".activity.SplashScreen">
    <intent-filter>
     <action android:name="android.intent.action.MAIN" />

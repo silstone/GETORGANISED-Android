@@ -132,9 +132,9 @@ finish()
                         val given_name = account.givenName
                         val email = account.email
                         val photo_url = account.photoUrl.toString() + "?type=large"
-                        Log.e("name--->", name)
-                        Log.e("email--->", email)
-                        Log.e("photo_url--->", photo_url)
+                      //  Log.e("name--->", name)
+                      //  Log.e("email--->", email)
+                      //  Log.e("photo_url--->", photo_url)
                       //  checkUserData(email, name)
                     }
 

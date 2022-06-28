@@ -75,5 +75,11 @@ class SubTask {
         this.color = color
     }
 
+    fun SubTask(date: String?) {
+
+        // This keyword refers to current object itself
+        this.date = date!!
+    }
+
 
 }

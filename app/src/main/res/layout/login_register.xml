@@ -195,7 +195,7 @@
                     android:id="@+id/confirm_password_ed"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:hint="@string/password"
+                    android:hint="@string/confirm_password"
                     android:singleLine="true"
                     android:textSize="14sp"
                     android:inputType="textPassword"

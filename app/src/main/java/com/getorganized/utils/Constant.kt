@@ -21,6 +21,21 @@ class Constant {
     val SUBTASKS = "SUBTASKS"
 
 
+    var b_Unscheduled = false
+    var b_time = ""
+
+    var b_Unscheduled_2 = false
+    var b_time_2 = ""
+
+    var complete_time = ""
+
+    var yesterday = "yesterday"
+    var today = "today"
+    var tomorrow = "tomorrow"
+
+
+
+
 
     val Unscheduled = "Unscheduled"
     val Scheduled = "Scheduled"
@@ -40,6 +55,7 @@ class Constant {
     // lateinit var USER_EMAIL :String
 
     var task_list: List<TaskList?> = ArrayList<TaskList?>()
+
 
 
 

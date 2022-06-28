@@ -167,11 +167,11 @@ class LoginRegister : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 if (confirm_password_ed.text.length > 0) {
-                    pass_top.visibility = View.VISIBLE
+                    confirm_pass_top.visibility = View.VISIBLE
                     b_confm_pass = true
                     validate(count)
                 } else {
-                    pass_top.visibility = View.GONE
+                    confirm_pass_top.visibility = View.GONE
                     b_confm_pass = false
                     validate(count)
                     login_register_button.setBackground(resources.getDrawable(R.drawable.btn_unselected_background))
@@ -239,6 +239,8 @@ class LoginRegister : AppCompatActivity() {
 
 
         back_btn.setOnClickListener {
+            val intent = Intent(this, SelectionScreen::class.java)
+            startActivity(intent)
             finish()
         }
 

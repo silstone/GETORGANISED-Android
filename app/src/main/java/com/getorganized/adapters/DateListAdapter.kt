@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.getorganized.R
+import java.util.*
 
 
 class DateListAdapter(val items: MutableList<String> = ArrayList(), val context: Context) :
@@ -26,7 +27,18 @@ class DateListAdapter(val items: MutableList<String> = ArrayList(), val context:
     @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: dateViewHolder, position: Int) {
         //  holder?.listname. = items.get(position)
-        holder.date_no.setText(items.get(position))
+
+        //Mar 01, 2022
+        val s = items.get(position)
+        val split = s.split(",".toRegex()).toTypedArray()
+        val firstSubString = split[0]
+       // val secondSubString = split[1]
+
+        val split2 = firstSubString.split(" ".toRegex()).toTypedArray()
+        val month = split2[0]
+        val date = split2[1]
+        holder.date_no.setText(date)
+        holder.month_txt.setText(month)
         
 
     }

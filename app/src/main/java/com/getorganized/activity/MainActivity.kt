@@ -5,8 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.GestureDetector
 import android.view.MotionEvent
@@ -15,15 +13,14 @@ import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatEditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.getorganized.R
 import com.getorganized.adapters.*
 import com.getorganized.model_classes.SubTask
 import com.getorganized.model_classes.TaskList
 import com.getorganized.utils.Constant
+import com.getorganized.utils.SharedPref
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
@@ -31,6 +28,11 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import java.lang.Math.abs
+import java.sql.DriverManager.println
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -42,9 +44,10 @@ class MainActivity : AppCompatActivity() {
     lateinit var swipe_layout: RelativeLayout
     lateinit var scroll_1: ScrollView
     lateinit var scroll_2: ScrollView
-   // lateinit var swipe: RelativeLayout
-   // lateinit var add_list_new: LinearLayout
-   lateinit var add_list: LinearLayout
+
+    // lateinit var swipe: RelativeLayout
+    // lateinit var add_list_new: LinearLayout
+    lateinit var add_list: LinearLayout
 
     var delete_node_id = ""
 
@@ -67,8 +70,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var add_list_txt: TextView
     lateinit var task_detail: TextView
 
-   // lateinit var new_addlist: TextView
-   // lateinit var new_schedule: TextView
+    // lateinit var new_addlist: TextView
+    // lateinit var new_schedule: TextView
 
     lateinit var schedule_txt: TextView
 
@@ -81,16 +84,16 @@ class MainActivity : AppCompatActivity() {
     var sublist: ArrayList<SubTask> = ArrayList<SubTask>()
     var inboxlist: ArrayList<SubTask> = ArrayList<SubTask>()
     var newsublist: ArrayList<SubTask> = ArrayList<SubTask>()
-     var completedlist: ArrayList<SubTask> = ArrayList<SubTask>()
+    var completedlist: ArrayList<SubTask> = ArrayList<SubTask>()
 
     // var swiped: Boolean = false
     val constant = Constant()
     var firestore = FirebaseFirestore.getInstance()
     private var mAuth: FirebaseAuth? = null
     lateinit var doc_ref: DocumentReference
+    val sharedPref = SharedPref()
 
-
-   // lateinit var new_subtask: AppCompatEditText
+    // lateinit var new_subtask: AppCompatEditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState);
@@ -101,17 +104,17 @@ class MainActivity : AppCompatActivity() {
         inbox_recycler = findViewById(R.id.inbox_recycler) as RecyclerView
         subtask_recycler = findViewById(R.id.subtask_recycler) as RecyclerView
 
-       // val new_task = findViewById(R.id.new_task) as TextView
+        // val new_task = findViewById(R.id.new_task) as TextView
         val new_list_txt = findViewById(R.id.new_list_txt) as TextView
-       // new_addlist = findViewById(R.id.new_addlist) as TextView
-       // new_schedule = findViewById(R.id.new_schedule) as TextView
-       // new_subtask = findViewById(R.id.new_subtask) as AppCompatEditText
+        // new_addlist = findViewById(R.id.new_addlist) as TextView
+        // new_schedule = findViewById(R.id.new_schedule) as TextView
+        // new_subtask = findViewById(R.id.new_subtask) as AppCompatEditText
 
         val swipe_txt = findViewById(R.id.swipe_txt) as TextView
         val plus_btn = findViewById(R.id.plus_btn) as TextView
         val add_new_subtask = findViewById(R.id.add_new_subtask) as TextView
 
-      //  val cancle_btn = findViewById(R.id.cancle_btn) as ImageView
+        //  val cancle_btn = findViewById(R.id.cancle_btn) as ImageView
 
         add_list_txt = findViewById(R.id.add_list_txt) as TextView
         task_detail = findViewById(R.id.task_detail) as TextView
@@ -127,15 +130,14 @@ class MainActivity : AppCompatActivity() {
 
         val delete_task = findViewById(R.id.delete_task) as LinearLayout
         val mark_done = findViewById(R.id.mark_done) as LinearLayout
-      //  val create_subtask = findViewById(R.id.create_subtask) as LinearLayout
-
+        //  val create_subtask = findViewById(R.id.create_subtask) as LinearLayout
 
 
         first_layout = findViewById(R.id.first_layout) as LinearLayout
         second_layout = findViewById(R.id.second_layout) as LinearLayout
         third_layout = findViewById(R.id.third_layout) as LinearLayout
         add_list = findViewById(R.id.add_list) as LinearLayout
-      //  add_list_new = findViewById(R.id.add_list_new) as LinearLayout
+        //  add_list_new = findViewById(R.id.add_list_new) as LinearLayout
         swipe_layout = findViewById(R.id.swipe_layout) as RelativeLayout
         scroll_1 = findViewById(R.id.scroll_1) as ScrollView
         scroll_2 = findViewById(R.id.scroll_2) as ScrollView
@@ -152,10 +154,7 @@ class MainActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
         progressDialog = ProgressDialog(this@MainActivity)
-       // create_subtask.isClickable = false
-
-
-
+        // create_subtask.isClickable = false
 
 
         mLayoutManager = LinearLayoutManager(this)
@@ -191,8 +190,6 @@ class MainActivity : AppCompatActivity() {
         subtask_recycler.adapter = subtsk_adapter
 
 
-
-
         /*   list_recycler_view.setOnClickListener {
 
                first_layout.visibility = View.GONE
@@ -222,69 +219,72 @@ class MainActivity : AppCompatActivity() {
             showNewTask()
         }
 
-       /* cancle_btn.setOnClickListener {
-            create_task.visibility = View.GONE
-            hideSoftKeyboard(new_subtask)
-        }
+        /* cancle_btn.setOnClickListener {
+             create_task.visibility = View.GONE
+             hideSoftKeyboard(new_subtask)
+         }
 
-        create_subtask.setOnClickListener {
-            val txt = new_subtask.text.toString().trim()
-            val parent = new_addlist.text.toString().trim()
-            addSubtask(txt, parent)
-        }*/
+         create_subtask.setOnClickListener {
+             val txt = new_subtask.text.toString().trim()
+             val parent = new_addlist.text.toString().trim()
+             addSubtask(txt, parent)
+         }*/
 
 
-       /* new_subtask.addTextChangedListener(object : TextWatcher {
+        /* new_subtask.addTextChangedListener(object : TextWatcher {
 
-            override fun afterTextChanged(s: Editable) {
-            }
+             override fun afterTextChanged(s: Editable) {
+             }
 
-            override fun beforeTextChanged(
-                s: CharSequence, start: Int, count: Int, after: Int
-            ) {
-            }
+             override fun beforeTextChanged(
+                 s: CharSequence, start: Int, count: Int, after: Int
+             ) {
+             }
 
-            override fun onTextChanged(
-                s: CharSequence, start: Int, before: Int, count: Int
-            ) {
-                if (count > 0) {
-                    //  val myToast = Toast.makeText(applicationContext,""+count,Toast.LENGTH_SHORT).show()
-                    create_subtask.setBackgroundColor(resources.getColor(R.color.button_color))
-                    create_subtask.isClickable = true
-                } else {
-                    create_subtask.isClickable = false
-                }
-            }
-        });*/
+             override fun onTextChanged(
+                 s: CharSequence, start: Int, before: Int, count: Int
+             ) {
+                 if (count > 0) {
+                     //  val myToast = Toast.makeText(applicationContext,""+count,Toast.LENGTH_SHORT).show()
+                     create_subtask.setBackgroundColor(resources.getColor(R.color.button_color))
+                     create_subtask.isClickable = true
+                 } else {
+                     create_subtask.isClickable = false
+                 }
+             }
+         });*/
 
         first_layout.setOnTouchListener(object : OnSwipeTouchListener(this@MainActivity) {
-                override fun onSwipeLeft() {
-                    super.onSwipeLeft()
-                    /*Toast.makeText(this@MainActivity, "Swipe Left gesture detected",
-                        Toast.LENGTH_SHORT)
-                        .show()*/
-                    val intent = Intent(this@MainActivity, ScheduleTask::class.java)
-                    startActivity(intent)
-                }
-                override fun onSwipeRight() {
-                    super.onSwipeRight()
-                    /*Toast.makeText(
-                        this@MainActivity,
-                        "Swipe Right gesture detected",
-                        Toast.LENGTH_SHORT
-                    ).show()*/
-                }
-                override fun onSwipeUp() {
-                    super.onSwipeUp()
-                    /*Toast.makeText(this@MainActivity, "Swipe up gesture detected", Toast.LENGTH_SHORT)
-                        .show()*/
-                }
-                override fun onSwipeDown() {
-                    super.onSwipeDown()
-                    /*Toast.makeText(this@MainActivity, "Swipe down gesture detected", Toast.LENGTH_SHORT)
-                        .show()*/
-                }
-            })
+            override fun onSwipeLeft() {
+                super.onSwipeLeft()
+                /*Toast.makeText(this@MainActivity, "Swipe Left gesture detected",
+                    Toast.LENGTH_SHORT)
+                    .show()*/
+                val intent = Intent(this@MainActivity, ScheduleTask::class.java)
+                startActivity(intent)
+            }
+
+            override fun onSwipeRight() {
+                super.onSwipeRight()
+                /*Toast.makeText(
+                    this@MainActivity,
+                    "Swipe Right gesture detected",
+                    Toast.LENGTH_SHORT
+                ).show()*/
+            }
+
+            override fun onSwipeUp() {
+                super.onSwipeUp()
+                /*Toast.makeText(this@MainActivity, "Swipe up gesture detected", Toast.LENGTH_SHORT)
+                    .show()*/
+            }
+
+            override fun onSwipeDown() {
+                super.onSwipeDown()
+                /*Toast.makeText(this@MainActivity, "Swipe down gesture detected", Toast.LENGTH_SHORT)
+                    .show()*/
+            }
+        })
 
         scroll_1.setOnTouchListener(object : OnSwipeTouchListener(this@MainActivity) {
             override fun onSwipeLeft() {
@@ -295,6 +295,7 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this@MainActivity, ScheduleTask::class.java)
                 startActivity(intent)
             }
+
             override fun onSwipeRight() {
                 super.onSwipeRight()
                 /*Toast.makeText(
@@ -303,11 +304,13 @@ class MainActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()*/
             }
+
             override fun onSwipeUp() {
                 super.onSwipeUp()
                 /*Toast.makeText(this@MainActivity, "Swipe up gesture detected", Toast.LENGTH_SHORT)
                     .show()*/
             }
+
             override fun onSwipeDown() {
                 super.onSwipeDown()
                 /*Toast.makeText(this@MainActivity, "Swipe down gesture detected", Toast.LENGTH_SHORT)
@@ -324,19 +327,22 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this@MainActivity, ScheduleTask::class.java)
                 startActivity(intent)
             }
+
             override fun onSwipeRight() {
                 super.onSwipeRight()
-               /* Toast.makeText(
-                    this@MainActivity,
-                    "Swipe Right gesture detected",
-                    Toast.LENGTH_SHORT
-                ).show()*/
+                /* Toast.makeText(
+                     this@MainActivity,
+                     "Swipe Right gesture detected",
+                     Toast.LENGTH_SHORT
+                 ).show()*/
             }
+
             override fun onSwipeUp() {
                 super.onSwipeUp()
-               /* Toast.makeText(this@MainActivity, "Swipe up gesture detected", Toast.LENGTH_SHORT)
-                    .show()*/
+                /* Toast.makeText(this@MainActivity, "Swipe up gesture detected", Toast.LENGTH_SHORT)
+                     .show()*/
             }
+
             override fun onSwipeDown() {
                 super.onSwipeDown()
                 /*Toast.makeText(this@MainActivity, "Swipe down gesture detected", Toast.LENGTH_SHORT)
@@ -347,12 +353,12 @@ class MainActivity : AppCompatActivity() {
 
         swipe_layout.setOnClickListener {
             // Check if we're running on Android 5.0 or higher
-           /* if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                val intent = Intent(this, ScheduleTask::class.java)
-                startActivity(intent)
-                // overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-            } else {
-            }*/
+            /* if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                 val intent = Intent(this, ScheduleTask::class.java)
+                 startActivity(intent)
+                 // overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+             } else {
+             }*/
 
 
             val intent = Intent(this, ScheduleTask::class.java)
@@ -377,13 +383,13 @@ class MainActivity : AppCompatActivity() {
             task_list_layout.visibility = View.VISIBLE
         }
 
-       /* add_list_new.setOnClickListener {
-            delete_done_layout.visibility = View.GONE
-            create_task.visibility = View.GONE
-            hideSoftKeyboard(new_subtask);
-            task_list_layout.visibility = View.VISIBLE
+        /* add_list_new.setOnClickListener {
+             delete_done_layout.visibility = View.GONE
+             create_task.visibility = View.GONE
+             hideSoftKeyboard(new_subtask);
+             task_list_layout.visibility = View.VISIBLE
 
-        }*/
+         }*/
 
         cross_btn.setOnClickListener {
             task_list_layout.visibility = View.GONE
@@ -439,6 +445,23 @@ class MainActivity : AppCompatActivity() {
 
 
 
+        val calendar = Calendar.getInstance()
+        val today = calendar.time
+
+        calendar.add(Calendar.DAY_OF_YEAR, 1)
+        val tomorrow = calendar.time
+
+        calendar.add(Calendar.DAY_OF_YEAR, -2)
+        val yesterday = calendar.time
+
+        val dateFormat: DateFormat = SimpleDateFormat("MMM dd, yyyy")
+        sharedPref.save_value(this,constant.today    ,dateFormat.format(today))
+        sharedPref.save_value(this,constant.tomorrow ,dateFormat.format(tomorrow))
+        sharedPref.save_value(this,constant.yesterday,dateFormat.format(yesterday))
+
+
+        getTasks()
+
     }
 
     open class OnSwipeTouchListener(c: Context?) :
@@ -447,24 +470,29 @@ class MainActivity : AppCompatActivity() {
         override fun onTouch(view: View, motionEvent: MotionEvent): Boolean {
             return gestureDetector.onTouchEvent(motionEvent)
         }
+
         private inner class GestureListener : GestureDetector.SimpleOnGestureListener() {
             private val SWIPE_THRESHOLD: Int = 100
             private val SWIPE_VELOCITY_THRESHOLD: Int = 100
             override fun onDown(e: MotionEvent): Boolean {
                 return true
             }
+
             override fun onSingleTapUp(e: MotionEvent): Boolean {
                 onClick()
                 return super.onSingleTapUp(e)
             }
+
             override fun onDoubleTap(e: MotionEvent): Boolean {
                 onDoubleClick()
                 return super.onDoubleTap(e)
             }
+
             override fun onLongPress(e: MotionEvent) {
                 onLongClick()
                 super.onLongPress(e)
             }
+
             override fun onFling(
                 e1: MotionEvent,
                 e2: MotionEvent,
@@ -481,21 +509,18 @@ class MainActivity : AppCompatActivity() {
                         ) {
                             if (diffX > 0) {
                                 onSwipeRight()
-                            }
-                            else {
+                            } else {
                                 onSwipeLeft()
                             }
                         }
-                    }
-                    else {
+                    } else {
                         if (abs(diffY) > SWIPE_THRESHOLD && abs(
                                 velocityY
                             ) > SWIPE_VELOCITY_THRESHOLD
                         ) {
                             if (diffY < 0) {
                                 onSwipeUp()
-                            }
-                            else {
+                            } else {
                                 onSwipeDown()
                             }
                         }
@@ -506,6 +531,7 @@ class MainActivity : AppCompatActivity() {
                 return false
             }
         }
+
         open fun onSwipeRight() {}
         open fun onSwipeLeft() {}
         open fun onSwipeUp() {}
@@ -513,15 +539,18 @@ class MainActivity : AppCompatActivity() {
         private fun onClick() {}
         private fun onDoubleClick() {}
         private fun onLongClick() {}
+
         init {
             gestureDetector = GestureDetector(c, GestureListener())
         }
+
+
     }
 
 
     override fun onResume() {
         super.onResume()
-        getTasks()
+
     }
 
 
@@ -588,39 +617,40 @@ class MainActivity : AppCompatActivity() {
                     subtaskList.setNodeid(document.id.toString())
                     subtaskList.setColor(document.data.get(constant.color).toString())
 
-                    if (document.data.get(constant.list_name).toString().equals(constant.inbox)){
+                    if (document.data.get(constant.list_name).toString().equals(constant.inbox)) {
                         inboxlist.add(subtaskList)
-                    }else {
+                    } else {
                         sublist.add(subtaskList)
                     }
 
                 }
 
-                if (inboxlist.size > 0    || sublist.size > 0) {
+                if (inboxlist.size > 0 || sublist.size > 0) {
 
-                    second_layout.visibility = View.VISIBLE
+
                     first_layout.visibility = View.GONE
                     third_layout.visibility = View.GONE
 
-                    inbox_adapter = Inbox_Adapter(inboxlist, this)
-                    inbox_recycler?.setAdapter(inbox_adapter)
-                    inbox_adapter?.notifyDataSetChanged()
-
+                    if (inboxlist.size > 0) {
+                        second_layout.visibility = View.VISIBLE
+                        inbox_adapter = Inbox_Adapter(inboxlist, this)
+                        inbox_recycler?.setAdapter(inbox_adapter)
+                        inbox_adapter?.notifyDataSetChanged()
+                    } else {
+                        second_layout.visibility = View.GONE
+                        first_layout.visibility = View.VISIBLE
+                        third_layout.visibility = View.GONE
+                    }
                     subtsk_adapter = Subtask_Adapter(sublist, "", "shade_16", this)
                     subtask_recycler?.setAdapter(subtsk_adapter)
                     subtsk_adapter?.notifyDataSetChanged()
 
-                }
-                else {
+                } else {
                     second_layout.visibility = View.GONE
                     first_layout.visibility = View.VISIBLE
                     third_layout.visibility = View.GONE
 
                 }
-
-
-
-
 
 
             }
@@ -631,23 +661,19 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
-
     fun showSoftKeyboard(view: View) {
         if (view.requestFocus()) {
             val imm: InputMethodManager =
-                getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
             imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
         }
     }
 
     fun hideSoftKeyboard(view: View) {
         val imm =
-            getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
-
-
 
 
     // to delete od mark as done
@@ -660,26 +686,33 @@ class MainActivity : AppCompatActivity() {
 
     fun showtask(title: String, color: String) {
 
+        constant.b_Unscheduled = false
+        constant.b_time =""
         if (color.equals("shade_0")) {
-            second_layout.visibility = View.VISIBLE
-            first_layout.visibility = View.GONE
-            third_layout.visibility = View.GONE
-        }
-        else {
+            if (inboxlist.size > 0) {
+                second_layout.visibility = View.VISIBLE
+                first_layout.visibility = View.GONE
+                third_layout.visibility = View.GONE
+            }else{
+                second_layout.visibility = View.GONE
+                first_layout.visibility = View.VISIBLE
+                third_layout.visibility = View.GONE
+            }
+
+        } else {
             second_layout.visibility = View.GONE
             first_layout.visibility = View.GONE
             third_layout.visibility = View.VISIBLE
 
-
             newsublist.clear()
             completedlist.clear()
             for (i in sublist.indices) {
-                //  println(sublist[i])
+                 val name_list = sublist[i].getList_name().toString().trim()
 
-                if (title.equals(sublist[i].getList_name())) {
+                if (title.equals(name_list)) {
 
-                     var name = sublist[i].getTask_status()
-                    if (name.equals(constant.completed)){
+                    var name = sublist[i].getTask_status()
+                    if (name!!.equals(constant.completed)) {
 
                         val subtaskList: SubTask = SubTask()
                         subtaskList.setList_name(sublist[i].getList_name().toString())
@@ -692,8 +725,7 @@ class MainActivity : AppCompatActivity() {
                         subtaskList.setColor(sublist[i].getColor().toString())
                         completedlist.add(subtaskList)
 
-                    }
-                    else {
+                    } else {
                         val subtaskList: SubTask = SubTask()
                         subtaskList.setList_name(sublist[i].getList_name().toString())
                         subtaskList.setStart_time(sublist[i].getStart_time().toString())
@@ -711,6 +743,17 @@ class MainActivity : AppCompatActivity() {
 
 
             if (newsublist.size > 0) {
+
+
+                Collections.sort(newsublist, sortItems())
+
+                println("Sorted in Ascending Order")
+
+                for (d in newsublist) {
+                    // Printing the sorted items from the List
+                    System.out.println(d.getDate())
+                }
+
                 second_layout.visibility = View.GONE
                 first_layout.visibility = View.GONE
                 third_layout.visibility = View.VISIBLE
@@ -729,18 +772,17 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-     fun showNewTask() {
+    fun showNewTask() {
 
-         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-             val intent = Intent(this, ScheduleTask::class.java)
-             startActivity(intent)
-             // overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-         } else {
-             val intent = Intent(this, ScheduleTask::class.java)
-             startActivity(intent)
-         }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            val intent = Intent(this, ScheduleTask::class.java)
+            startActivity(intent)
+            // overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+        } else {
+            val intent = Intent(this, ScheduleTask::class.java)
+            startActivity(intent)
+        }
     }
-
 
 
     fun showListName(list_name: String, color: String) {
@@ -751,5 +793,18 @@ class MainActivity : AppCompatActivity() {
         add_list_txt.setText(list_name)
 
     }
+
+
+    internal  class sortItems : Comparator<SubTask?> {
+        // Method of this class
+        // @Override
+        override fun compare(a: SubTask?, b: SubTask?): Int {
+
+            // Returning the value after comparing the objects
+            // this will sort the data in Ascending order
+            return a?.getDate().toString().compareTo(b?.getDate().toString())
+        }
+    }
+
 
 }

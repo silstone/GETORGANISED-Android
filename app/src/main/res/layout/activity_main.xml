@@ -198,6 +198,7 @@
                 android:background="@color/white"
                 android:orientation="vertical"
                 android:scrollbars="none"
+                android:paddingBottom="10dp"
                 android:visibility="gone">
 
 
@@ -335,13 +336,15 @@
                 android:layout_gravity="start"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="40dp"
+                android:layout_marginEnd="45dp"
                 android:drawablePadding="5dp"
+                android:maxLines="2"
                 android:fontFamily="@font/poppins_semi_bold"
                 android:gravity="start"
                 android:text="------"
                 android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:ellipsize="end"/>
 
             <ImageView
                 android:id="@+id/cross_btn2"

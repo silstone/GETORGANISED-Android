@@ -2,17 +2,17 @@ package com.getorganized.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Canvas
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.GridLayout
-import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.getorganized.R
 import com.getorganized.activity.MainActivity
 import com.getorganized.model_classes.TaskList
+import java.util.*
 
 
 class DashboardListAdapter(val items: ArrayList<TaskList>, val context: Context) :
@@ -45,11 +45,12 @@ class DashboardListAdapter(val items: ArrayList<TaskList>, val context: Context)
 
         val color = items.get(position).getcolorname()
 
-         if(color.equals("shade_0")){holder.bottomview.setBackgroundColor(
-             context.resources.getColor(
-                 R.color.shade_0
-             )
-         )}
+            if(color!!.equals("shade_0")){holder.bottomview.setBackgroundColor(
+                context.resources.getColor(
+                    R.color.shade_0
+                )
+            )}
+       
          if(color.equals("shade_1")){holder.bottomview.setBackgroundColor(
              context.resources.getColor(
                  R.color.shade_1
@@ -142,99 +143,116 @@ class DashboardListAdapter(val items: ArrayList<TaskList>, val context: Context)
 
         holder.name.setOnClickListener {
 
-            val color = items.get(position).getcolorname()
-            if(color.equals("shade_0")){
-                holder.name.setTextColor(context.resources.getColor(R.color.white))
-                holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.inbox_background))
+            val pos = position
+             Log.e("pos-->2",pos.toString())
+                    val color = items.get(pos).getcolorname().toString()
 
-                mainActivity.showtask(items.get(position).getname().toString().trim(),color.toString())
-         }
-         if(color.equals("shade_1")){
-             holder.name.setTextColor(context.resources.getColor(R.color.white))
-             holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.shade_1_bckgrd))
-             mainActivity.showtask(items.get(position).getname().toString().trim(),color.toString())
-         }
-         if(color.equals("shade_2")){
-             holder.name.setTextColor(context.resources.getColor(R.color.white))
-             holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.shade_2_bckgrd))
-             mainActivity.showtask(items.get(position).getname().toString().trim(),color.toString())
-         }
-         if(color.equals("shade_3")){
-             holder.name.setTextColor(context.resources.getColor(R.color.white))
-             holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.shade_3_bckgrd))
-             mainActivity.showtask(items.get(position).getname().toString().trim(),color.toString())
+                    Log.e("pos-->color",color.toString())
+                    if(color!!.equals("shade_0")){
+                        holder.name.setTextColor(context.resources.getColor(R.color.white))
+                        holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.inbox_background))
+                        mainActivity.showtask(items.get(position).getname().toString(),color.toString())
 
-         }
-         if(color.equals("shade_4")){
-             holder.name.setTextColor(context.resources.getColor(R.color.white))
-             holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.shade_4_bckgrd))
-             mainActivity.showtask(items.get(position).getname().toString().trim(),color.toString())
-         }
-         if(color.equals("shade_5")){
-             holder.name.setTextColor(context.resources.getColor(R.color.white))
-             holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.shade_5_bckgrd))
-             mainActivity.showtask(items.get(position).getname().toString().trim(),color.toString())
-         }
-         if(color.equals("shade_6")){
-             holder.name.setTextColor(context.resources.getColor(R.color.white))
-             holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.shade_6_bckgrd))
-             mainActivity.showtask(items.get(position).getname().toString().trim(),color.toString())
-         }
-         if(color.equals("shade_7")){
-             holder.name.setTextColor(context.resources.getColor(R.color.white))
-             holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.shade_7_bckgrd))
-             mainActivity.showtask(items.get(position).getname().toString().trim(),color.toString())
-         }
-         if(color.equals("shade_8")){
-             holder.name.setTextColor(context.resources.getColor(R.color.white))
-             holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.shade_8_bckgrd))
-             mainActivity.showtask(items.get(position).getname().toString().trim(),color.toString())
-         }
-         if(color.equals("shade_9")){
-             holder.name.setTextColor(context.resources.getColor(R.color.white))
-             holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.shade_9_bckgrd))
-             mainActivity.showtask(items.get(position).getname().toString().trim(),color.toString())
-         }
-        if(color.equals("shade_10")){
-            holder.name.setTextColor(context.resources.getColor(R.color.white))
-            holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.shade_10_bckgrd))
-            mainActivity.showtask(items.get(position).getname().toString().trim(),color.toString())
-        }
-        if(color.equals("shade_11")){
-            holder.name.setTextColor(context.resources.getColor(R.color.white))
-            holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.shade_11_bckgrd))
-            mainActivity.showtask(items.get(position).getname().toString().trim(),color.toString())
-        }
-        if(color.equals("shade_12")){
-            holder.name.setTextColor(context.resources.getColor(R.color.white))
-            holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.shade_12_bckgrd))
-            mainActivity.showtask(items.get(position).getname().toString().trim(),color.toString())
-        }
-        if(color.equals("shade_13")){
-            holder.name.setTextColor(context.resources.getColor(R.color.white))
-            holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.shade_13_bckgrd))
-            mainActivity.showtask(items.get(position).getname().toString().trim(),color.toString())
-        }
-        if(color.equals("shade_14")){
-            holder.name.setTextColor(context.resources.getColor(R.color.white))
-            holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.shade_14_bckgrd))
-            mainActivity.showtask(items.get(position).getname().toString().trim(),color.toString())
-        }
-        if(color.equals("shade_15")){
-            holder.name.setTextColor(context.resources.getColor(R.color.white))
-            holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.shade_15_bckgrd))
-            mainActivity.showtask(items.get(position).getname().toString().trim(),color.toString())
-        }
-        if(color.equals("shade_16")){
-            holder.name.setTextColor(context.resources.getColor(R.color.white))
-            holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.shade_16_bckgrd))
-            mainActivity.showtask(items.get(position).getname().toString().trim(),color.toString())
-        }
+                    }
+                    if(color!!.equals("shade_1")){
+                        holder.name.setTextColor(context.resources.getColor(R.color.white))
+                        holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.shade_1_bckgrd))
+                        mainActivity.showtask(items.get(position).getname().toString(),color.toString())
+                    }
+                    if(color!!.equals("shade_2")){
+                        holder.name.setTextColor(context.resources.getColor(R.color.white))
+                        holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.shade_2_bckgrd))
+                        mainActivity.showtask(items.get(position).getname().toString(),color.toString())
+                    }
+                    if(color!!.equals("shade_3")){
+                        holder.name.setTextColor(context.resources.getColor(R.color.white))
+                        holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.shade_3_bckgrd))
+                        mainActivity.showtask(items.get(position).getname().toString(),color.toString())
+
+                    }
+                    if(color!!.equals("shade_4")){
+                        holder.name.setTextColor(context.resources.getColor(R.color.white))
+                        holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.shade_4_bckgrd))
+                        mainActivity.showtask(items.get(position).getname().toString(),color.toString())
+                    }
+                    if(color!!.equals("shade_5")){
+                        holder.name.setTextColor(context.resources.getColor(R.color.white))
+                        holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.shade_5_bckgrd))
+                        mainActivity.showtask(items.get(position).getname().toString(),color.toString())
+                    }
+                    if(color!!.equals("shade_6")){
+                        holder.name.setTextColor(context.resources.getColor(R.color.white))
+                        holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.shade_6_bckgrd))
+                        mainActivity.showtask(items.get(position).getname().toString(),color.toString())
+                    }
+                    if(color!!.equals("shade_7")){
+                        holder.name.setTextColor(context.resources.getColor(R.color.white))
+                        holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.shade_7_bckgrd))
+                        mainActivity.showtask(items.get(position).getname().toString(),color.toString())
+                    }
+                    if(color!!.equals("shade_8")){
+                        holder.name.setTextColor(context.resources.getColor(R.color.white))
+                        holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.shade_8_bckgrd))
+                        mainActivity.showtask(items.get(position).getname().toString(),color.toString())
+                    }
+                    if(color!!.equals("shade_9")){
+                        holder.name.setTextColor(context.resources.getColor(R.color.white))
+                        holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.shade_9_bckgrd))
+                        mainActivity.showtask(items.get(position).getname().toString(),color.toString())
+                    }
+                    if(color!!.equals("shade_10")){
+                        holder.name.setTextColor(context.resources.getColor(R.color.white))
+                        holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.shade_10_bckgrd))
+                        mainActivity.showtask(items.get(position).getname().toString(),color.toString())
+                    }
+                    if(color!!.equals("shade_11")){
+                        holder.name.setTextColor(context.resources.getColor(R.color.white))
+                        holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.shade_11_bckgrd))
+                        mainActivity.showtask(items.get(position).getname().toString(),color.toString())
+                    }
+                    if(color!!.equals("shade_12")){
+                        holder.name.setTextColor(context.resources.getColor(R.color.white))
+                        holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.shade_12_bckgrd))
+                        mainActivity.showtask(items.get(position).getname().toString(),color.toString())
+                    }
+                    if(color!!.equals("shade_13")){
+                        holder.name.setTextColor(context.resources.getColor(R.color.white))
+                        holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.shade_13_bckgrd))
+                        mainActivity.showtask(items.get(position).getname().toString(),color.toString())
+                    }
+                    if(color!!.equals("shade_14")){
+                        holder.name.setTextColor(context.resources.getColor(R.color.white))
+                        holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.shade_14_bckgrd))
+                        mainActivity.showtask(items.get(position).getname().toString(),color.toString())
+                    }
+                    if(color!!.equals("shade_15")){
+                        holder.name.setTextColor(context.resources.getColor(R.color.white))
+                        holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.shade_15_bckgrd))
+                        mainActivity.showtask(items.get(position).getname().toString(),color.toString())
+                    }
+                    if(color!!.equals("shade_16")){
+                        holder.name.setTextColor(context.resources.getColor(R.color.white))
+                        holder.name_layout.setBackground(context.resources.getDrawable(R.drawable.shade_16_bckgrd))
+                        mainActivity.showtask(items.get(position).getname().toString(),color.toString())
+                    }
+
+            /*for (i in 0..items.size) {
+
+                if(i.equals(pos)){
+                    Log.e("pos-->for",pos.toString())
+                }else{
+                    Log.e("pos-->for",pos.toString())
+                    holder.name.setTextColor(context.resources.getColor(R.color.black))
+                    holder.name_layout.setBackgroundColor(context.resources.getColor(R.color.white))
+                }
+            }*/
 
         }
 
 
     }
+
+
 
 
 }

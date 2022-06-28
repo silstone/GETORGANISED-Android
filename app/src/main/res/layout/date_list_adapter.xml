@@ -17,7 +17,6 @@
         tools:ignore="MissingConstraints">
 
 
-
         <TextView
             android:id="@+id/date_no"
             android:layout_width="wrap_content"
@@ -25,12 +24,21 @@
             android:text="5"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/poppins_medium"
-            android:textSize="12sp"
+            android:textSize="11sp"
             android:layout_centerHorizontal="true"
             android:singleLine="true"
             android:textColor="@color/white"/>
 
 
+
+        <!--<app.futured.donut.DonutProgressView
+    android:id="@+id/donut_view"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:donut_bgLineColor="@color/cloud"
+    app:donut_gapWidth="20"
+    app:donut_gapAngle="270"
+    app:donut_strokeWidth="16dp"/>-->
 
 
         <TextView
